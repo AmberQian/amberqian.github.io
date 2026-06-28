@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CrazyOx.ai — AI驱动的投资视角与自动化叙事</title>
+  <meta name="description" content="AI板块价值迁徙、半导体杠杆监控、CyberFlow AI自动化IP运营——深度投研视角与AI工具集成" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-deep:    #0a0a0b;
+      --bg-surface:  #121215;
+      --bg-card:     #1a1a1f;
+      --bg-elevated: #222228;
+      --border:      #2a2a32;
+      --border-subtle: #1f1f26;
+
+      --text-primary:   #faf5f0;
+      --text-secondary: #a8a29e;
+      --text-muted:     #6b6560;
+
+      --accent:      #d97706;
+      --accent-hover: #f59e0b;
+      --accent-subtle: rgba(217, 119, 6, 0.12);
+      --accent-glow:  rgba(217, 119, 6, 0.25);
+
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger:  #ef4444;
+      --info:    #3b82f6;
+
+      --font-display: 'Space Grotesk', system-ui, sans-serif;
+      --font-body:    'Noto Sans SC', 'PingFang SC', system-ui, sans-serif;
+      --font-serif:   'Noto Serif SC', 'Songti SC', serif;
+
+      --space-xs:  0.25rem;
+      --space-sm:  0.5rem;
+      --space-md:  1rem;
+      --space-lg:  2rem;
+      --space-xl:  4rem;
+
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+    .container { width: min(1200px, 90vw); margin-inline: auto; }
+    .section { padding: var(--space-xl) 0; }
+
+    .accent { color: var(--accent-hover); }
+
+    /* ===== TOPO LINE ===== */
+    .topo-line {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: var(--space-lg) 0;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      filter: blur(80px);
+      pointer-events: none;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%       { transform: translate(30px, -20px) scale(1.05); }
+      66%       { transform: translate(-20px, 15px) scale(0.97); }
+    }
+
+    .hero-inner {
+      container-type: inline-size;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--space-xl) var(--space-md);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent-subtle);
+      padding: 0.35em 1em;
+      width: fit-content;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-title em {
+      font-style: normal;
+      color: var(--accent-hover);
+    }
+
+    .hero-sub {
+      font-family: var(--font-serif);
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      color: var(--text-secondary);
+      max-width: 55ch;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      padding: 0.85em 1.8em;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: all 0.3s var(--ease-out-expo);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      font-weight: 700;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--accent-glow);
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent-hover);
+    }
+
+    /* ===== TICKER ===== */
+    .ticker-wrap {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      padding: 0.8em 0;
+      background: var(--bg-surface);
+    }
+
+    .ticker {
+      display: flex;
+      gap: 2em;
+      animation: ticker 40s linear infinite;
+      width: max-content;
+    }
+
+    .ticker span {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: var(--text-muted);
+    }
+
+    .ticker span::after {
+      content: '—';
+      margin-left: 2em;
+      color: var(--accent);
+    }
+
+    @keyframes ticker {
+      to { transform: translateX(-50%); }
+    }
+
+    /* ===== SECTION HEADER ===== */
+    .section-label {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-sm);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-md);
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      max-width: 60ch;
+      margin-bottom: var(--space-lg);
+      line-height: 1.8;
+    }
+
+    /* ===== DASH-GRID (tools) ===== */
+    .dash-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+      gap: var(--space-md);
+    }
+
+    .dash-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: var(--space-lg);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s var(--ease-out-expo);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dash-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.4s var(--ease-out-expo);
+    }
+
+    .dash-card:hover {
+      border-color: var(--border);
+      transform: translateY(-3px);
+    }
+    .dash-card:hover::before { transform: scaleY(1); }
+
+    .dash-card-icon {
+      font-size: 1.8rem;
+      margin-bottom: var(--space-md);
+      display: block;
+    }
+
+    .dash-card-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5em;
+    }
+
+    .dash-card-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .dash-card-tag {
+      display: inline-block;
+      margin-top: var(--space-md);
+      font-size: 0.7rem;
+      font-family: var(--font-display);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent-subtle);
+      padding: 0.3em 0.8em;
+    }
+
+    .dash-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4em;
+      margin-top: var(--space-md);
+      font-size: 0.82rem;
+      color: var(--accent-hover);
+      font-family: var(--font-display);
+      letter-spacing: 0.03em;
+      transition: gap 0.3s;
+    }
+    .dash-card-link:hover { gap: 0.8em; }
+
+    /* ===== CONTENT GRID ===== */
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+      gap: var(--space-md);
+    }
+
+    .content-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: var(--space-lg);
+      transition: all 0.3s var(--ease-out-expo);
+      position: relative;
+    }
+
+    .content-card:hover {
+      border-color: var(--accent);
+      background: var(--bg-elevated);
+    }
+
+    .content-card-num {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--accent-subtle);
+      margin-bottom: var(--space-sm);
+    }
+
+    .content-card-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5em;
+    }
+
+    .content-card-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .content-card-count {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: var(--space-md);
+      font-family: var(--font-display);
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== GITHUB TOOLS ===== */
+    .gh-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+      gap: var(--space-md);
+    }
+
+    .gh-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: var(--space-lg);
+      transition: all 0.3s var(--ease-out-expo);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gh-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .gh-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--space-sm);
+    }
+
+    .gh-card-name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent-hover);
+    }
+
+    .gh-card-star {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: var(--font-display);
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+      flex-shrink: 0;
+    }
+
+    .gh-card-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .gh-card-lang {
+      margin-top: var(--space-md);
+      display: flex;
+      gap: 0.8em;
+      flex-wrap: wrap;
+    }
+
+    .gh-lang-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3em;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: var(--font-display);
+    }
+
+    .gh-lang-dot::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .gh-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4em;
+      margin-top: var(--space-md);
+      font-size: 0.82rem;
+      color: var(--accent-hover);
+      font-family: var(--font-display);
+      letter-spacing: 0.03em;
+      transition: gap 0.3s;
+    }
+    .gh-card-cta:hover { gap: 0.8em; }
+
+    /* ===== CYBERFLOW ===== */
+    .cyberflow {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cyberflow-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    @container (max-width: 700px) {
+      .cyberflow-inner { grid-template-columns: 1fr; }
+    }
+
+    .cf-visual {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cf-visual::after {
+      content: 'CyberFlow.info';
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .cf-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        var(--accent-subtle) 2px,
+        var(--accent-subtle) 2.5px
+      );
+      opacity: 0.3;
+    }
+
+    .cf-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .cf-feature {
+      display: flex;
+      gap: var(--space-md);
+      align-items: flex-start;
+      padding: var(--space-md);
+      border-left: 2px solid var(--border);
+      transition: border-color 0.3s;
+    }
+
+    .cf-feature:hover { border-color: var(--accent); }
+
+    .cf-feature-icon {
+      flex-shrink: 0;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-subtle);
+      font-size: 1.1rem;
+    }
+
+    .cf-feature-title {
+      font-weight: 600;
+      margin-bottom: 0.3em;
+      font-size: 0.95rem;
+    }
+
+    .cf-feature-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ===== VIDEO GRID ===== */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+      gap: var(--space-md);
+    }
+
+    .video-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+      transition: transform 0.3s var(--ease-out-expo), border-color 0.3s;
+    }
+
+    .video-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .video-thumb {
+      aspect-ratio: 16/9;
+      background: var(--bg-elevated);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-thumb-icon {
+      font-size: 2.5rem;
+      opacity: 0.5;
+    }
+
+    .video-thumb::after {
+      content: '15:42';
+      position: absolute;
+      bottom: 0.5em;
+      right: 0.5em;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      font-size: 0.7rem;
+      font-family: var(--font-display);
+      padding: 0.2em 0.6em;
+    }
+
+    .video-info {
+      padding: var(--space-md);
+    }
+
+    .video-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.4em;
+      line-height: 1.4;
+    }
+
+    .video-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: var(--font-display);
+    }
+
+    /* ===== MANIFESTO ===== */
+    .manifesto {
+      text-align: center;
+      max-width: 65ch;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-md);
+    }
+
+    .manifesto-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 400;
+      line-height: 2;
+      color: var(--text-secondary);
+      border: none;
+      padding: 0;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-section {
+      text-align: center;
+      padding: var(--space-xl) 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-email {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--accent-hover);
+      display: inline-block;
+      margin: var(--space-md) 0;
+      position: relative;
+    }
+
+    .contact-email::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s var(--ease-out-expo);
+    }
+
+    .contact-email:hover::after { transform: scaleX(1); }
+
+    .contact-note {
+      color: var(--text-secondary);
+      max-width: 50ch;
+      margin: var(--space-sm) auto 0;
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1em 0;
+      backdrop-filter: blur(12px);
+      background: rgba(10, 10, 11, 0.85);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .nav.scrolled { border-bottom-color: var(--border); }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2em;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-family: var(--font-display);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--accent-hover); }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: var(--space-lg) 0;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: var(--font-display);
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { text-align: center; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">crazy<span>ox</span>.ai</a>
+      <ul class="nav-links">
+        <li><a href="#tools">工具</a></li>
+        <li><a href="#content">内容</a></li>
+        <li><a href="#github">GitHub</a></li>
+        <li><a href="#cyberflow">CyberFlow</a></li>
+        <li><a href="#videos">视频</a></li>
+        <li><a href="#contact">联系</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner container">
+      <div class="hero-tag">AI · 投研 · 自动化叙事</div>
+      <h1 class="hero-title">
+        在噪声中<br/>
+        找到<em>信号</em>
+      </h1>
+      <p class="hero-sub">
+        AI板块价值迁徙、半导体杠杆实时监控、CyberFlow自动化IP运营——
+        用工具放大视角，用叙事传递认知。
+      </p>
+      <div class="hero-actions">
+        <a href="#tools" class="btn btn-primary">探索工具 →</a>
+        <a href="https://github.com/AmberQian" class="btn btn-ghost" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <!-- TICKER -->
+    <div class="ticker-wrap">
+      <div class="ticker" id="ticker">
+        <span>AI板块价值迁徙表盘</span>
+        <span>DART宏观与科技叙事压力表</span>
+        <span>融资稀释表盘</span>
+        <span>半导体杠杆踩踏实时监控</span>
+        <span>估值技能看板 DCF/SEC/投资Memo</span>
+        <span>紫苏叶供应链咽喉工作台</span>
+        <span>CyberFlow AI自动化IP运营</span>
+        <span>15个YouTube免费科普视频</span>
+        <span>AI板块价值迁徙表盘</span>
+        <span>DART宏观与科技叙事压力表</span>
+        <span>融资稀释表盘</span>
+        <span>半导体杠杆踩踏实时监控</span>
+        <span>估值技能看板 DCF/SEC/投资Memo</span>
+        <span>紫苏叶供应链咽喉工作台</span>
+        <span>CyberFlow AI自动化IP运营</span>
+        <span>15个YouTube免费科普视频</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS / DASHBOARDS -->
+  <section class="section" id="tools">
+    <div class="container">
+      <div class="section-label reveal">Tools & Dashboards</div>
+      <h2 class="section-title reveal">集成工具与<em class="accent">实时仪表盘</em></h2>
+      <p class="section-desc reveal">
+        将投研框架蒸馏为可交互的仪表盘，让复杂的市场信号变得可读、可监控、可行动。
+      </p>
+
+      <div class="dash-grid">
+        <a href="https://amberqian.github.io/ai-migration-dashboard" class="dash-card reveal" target="_blank">
+          <span class="dash-card-icon">📊</span>
+          <h3 class="dash-card-title">AI板块价值迁徙表盘</h3>
+          <p class="dash-card-desc">追踪AI各子板块资金流向与相对强弱，识别价值迁徙路径与轮动信号。</p>
+          <span class="dash-card-tag">实时 · 板块轮动</span>
+          <span class="dash-card-link">打开仪表盘 →</span>
+        </a>
+
+        <a href="https://amberqian.github.io/dart-pressure-gauge" class="dash-card reveal" target="_blank">
+          <span class="dash-card-icon">🌡️</span>
+          <h3 class="dash-card-title">DART 宏观与科技叙事压力表</h3>
+          <p class="dash-card-desc">量化宏观压力下科技叙事的膨胀与收缩，辅助判断叙事驱动的行情拐点。</p>
+          <span class="dash-card-tag">宏观 · 叙事分析</span>
+          <span class="dash-card-link">打开仪表盘 →</span>
+        </a>
+
+        <a href="https://amberqian.github.io/financing-dilution-dashboard" class="dash-card reveal" target="_blank">
+          <span class="dash-card-icon">💧</span>
+          <h3 class="dash-card-title">融资稀释表盘</h3>
+          <p class="dash-card-desc">监控一级市场融资节奏与代币/股权稀释压力，评估项目稀缺性变化。</p>
+          <span class="dash-card-tag">一级市场 · 稀释分析</span>
+          <span class="dash-card-link">打开仪表盘 →</span>
+        </a>
+
+        <a href="https://amberqian.github.io/semiconductor-leverage-monitor" class="dash-card reveal" target="_blank">
+          <span class="dash-card-icon">⚡</span>
+          <h3 class="dash-card-title">半导体杠杆踩踏实时监控</h3>
+          <p class="dash-card-desc">追踪半导体板块杠杆资金动态，提前预警踩踏风险与连锁平仓事件。</p>
+          <span class="dash-card-tag">实时 · 风险预警</span>
+          <span class="dash-card-link">打开仪表盘 →</span>
+        </a>
+
+        <a href="https://amberqian.github.io/valuation-skill-board" class="dash-card reveal" target="_blank">
+          <span class="dash-card-icon">📈</span>
+          <h3 class="dash-card-title">估值技能看板</h3>
+          <p class="dash-card-desc">聚合 DCF 建模、SEC 财报分析、投资 Memo 生成与自动联网粗略估值，一站式投研工作区。</p>
+          <span class="dash-card-tag">DCF · SEC · Memo</span>
+          <span class="dash-card-link">打开看板 →</span>
+        </a>
+
+        <a href="https://amberqian.github.io/perilla-supply-chain" class="dash-card reveal" target="_blank">
+          <span class="dash-card-icon">🌿</span>
+          <h3 class="dash-card-title">紫苏叶供应链咽喉工作台</h3>
+          <p class="dash-card-desc">聚焦紫苏叶供应链关键节点与瓶颈环节，监控上游集中度与替代弹性。</p>
+          <span class="dash-card-tag">供应链 · 商品研究</span>
+          <span class="dash-card-link">打开工作台 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="topo-line"></div>
+
+  <!-- CONTENT COLLECTIONS -->
+  <section class="section" id="content">
+    <div class="container">
+      <div class="section-label reveal">Long-form Collections</div>
+      <h2 class="section-title reveal">长文<em class="accent">分类合集</em></h2>
+      <p class="section-desc reveal">
+        持续输出的深度内容，按主题分类整理。在输出中被动成长，在认知迭代中接近独立判断。
+      </p>
+
+      <div class="content-grid">
+        <div class="content-card reveal">
+          <div class="content-card-num">01</div>
+          <h3 class="content-card-title">AI与科技叙事</h3>
+          <p class="content-card-desc">从大模型竞争格局到AI资本开支周期，拆解科技叙事背后的真实驱动力。</p>
+          <div class="content-card-count">12+ 篇长文</div>
+        </div>
+
+        <div class="content-card reveal">
+          <div class="content-card-num">02</div>
+          <h3 class="content-card-title">半导体与硬件</h3>
+          <p class="content-card-desc">算力链、设备材料、先进制程——从产业细节到估值逻辑的完整链条。</p>
+          <div class="content-card-count">8+ 篇长文</div>
+        </div>
+
+        <div class="content-card reveal">
+          <div class="content-card-num">03</div>
+          <h3 class="content-card-title">宏观与流动性</h3>
+          <p class="content-card-desc">美联储路径、美元周期、流动性边际变化对风险资产的传导机制。</p>
+          <div class="content-card-count">10+ 篇长文</div>
+        </div>
+
+        <div class="content-card reveal">
+          <div class="content-card-num">04</div>
+          <h3 class="content-card-title">投研框架与方法论</h3>
+          <p class="content-card-desc">DCF实务、财报挖掘技巧、头寸管理、认知偏差识别——可复用的投研工具箱。</p>
+          <div class="content-card-count">15+ 篇长文</div>
+        </div>
+
+        <div class="content-card reveal">
+          <div class="content-card-num">05</div>
+          <h3 class="content-card-title">AI自动化与工具</h3>
+          <p class="content-card-desc">CyberFlow工作流、X账号运营、AI辅助内容生产——把能力蒸馏成可复制的Skills。</p>
+          <div class="content-card-count">6+ 篇长文</div>
+        </div>
+
+        <div class="content-card reveal">
+          <div class="content-card-num">06</div>
+          <h3 class="content-card-title">供应链与商品</h3>
+          <p class="content-card-desc">从紫苏叶到稀有金属，用供应链咽喉分析框架识别商品投资机会。</p>
+          <div class="content-card-count">5+ 篇长文</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="topo-line"></div>
+
+  <!-- GITHUB REPOS -->
+  <section class="section" id="github">
+    <div class="container">
+      <div class="section-label reveal">Open Source</div>
+      <h2 class="section-title reveal">GitHub <em class="accent">工具仓库</em></h2>
+      <p class="section-desc reveal">
+        所有仪表盘与工具的源代码，持续迭代中。欢迎 Star、Fork、提 Issue。
+      </p>
+
+      <div class="gh-grid" id="gh-grid">
+        <!-- 由 JS 动态填充，同时保留静态 fallback -->
+        <div class="gh-card reveal">
+          <div class="gh-card-top">
+            <span class="gh-card-name">ai-migration-dashboard</span>
+            <span class="gh-card-star">★ —</span>
+          </div>
+          <p class="gh-card-desc">AI板块价值迁徙表盘 — 子板块资金流向与轮动信号监控</p>
+          <div class="gh-card-lang"><span class="gh-lang-dot">Python</span></div>
+          <a href="https://github.com/AmberQian/ai-migration-dashboard" class="gh-card-cta" target="_blank">查看源码 →</a>
+        </div>
+
+        <div class="gh-card reveal">
+          <div class="gh-card-top">
+            <span class="gh-card-name">dart-pressure-gauge</span>
+            <span class="gh-card-star">★ —</span>
+          </div>
+          <p class="gh-card-desc">DART 宏观与科技叙事压力表</p>
+          <div class="gh-card-lang"><span class="gh-lang-dot">TypeScript</span></div>
+          <a href="https://github.com/AmberQian/dart-pressure-gauge" class="gh-card-cta" target="_blank">查看源码 →</a>
+        </div>
+
+        <div class="gh-card reveal">
+          <div class="gh-card-top">
+            <span class="gh-card-name">semiconductor-leverage-monitor</span>
+            <span class="gh-card-star">★ —</span>
+          </div>
+          <p class="gh-card-desc">半导体杠杆踩踏实时监控系统</p>
+          <div class="gh-card-lang"><span class="gh-lang-dot">Python</span></div>
+          <a href="https://github.com/AmberQian/semiconductor-leverage-monitor" class="gh-card-cta" target="_blank">查看源码 →</a>
+        </div>
+
+        <div class="gh-card reveal">
+          <div class="gh-card-top">
+            <span class="gh-card-name">valuation-skill-board</span>
+            <span class="gh-card-star">★ —</span>
+          </div>
+          <p class="gh-card-desc">估值技能看板 — DCF / SEC财报 / 投资Memo 聚合</p>
+          <div class="gh-card-lang"><span class="gh-lang-dot">Jupyter</span></div>
+          <a href="https://github.com/AmberQian/valuation-skill-board" class="gh-card-cta" target="_blank">查看源码 →</a>
+        </div>
+
+        <div class="gh-card reveal">
+          <div class="gh-card-top">
+            <span class="gh-card-name">cyberflow-skills</span>
+            <span class="gh-card-star">★ —</span>
+          </div>
+          <p class="gh-card-desc">CyberFlow 自动化运营 Skills 合集 — 让0基础用户具备长文输出能力</p>
+          <div class="gh-card-lang"><span class="gh-lang-dot">Markdown</span></div>
+          <a href="https://github.com/AmberQian/cyberflow-skills" class="gh-card-cta" target="_blank">查看源码 →</a>
+        </div>
+
+        <div class="gh-card reveal">
+          <div class="gh-card-top">
+            <span class="gh-card-name">perilla-supply-chain</span>
+            <span class="gh-card-star">★ —</span>
+          </div>
+          <p class="gh-card-desc">紫苏叶供应链咽喉分析工作台</p>
+          <div class="gh-card-lang"><span class="gh-lang-dot">Python</span></div>
+          <a href="https://github.com/AmberQian/perilla-supply-chain" class="gh-card-cta" target="_blank">查看源码 →</a>
+        </div>
+      </div>
+
+      <p style="text-align:center; margin-top:var(--space-lg);">
+        <a href="https://github.com/AmberQian" class="btn btn-ghost" target="_blank">查看全部仓库 →</a>
+      </p>
+    </div>
+  </section>
+
+  <div class="topo-line"></div>
+
+  <!-- CYBERFLOW -->
+  <section class="section cyberflow" id="cyberflow">
+    <div class="container">
+      <div class="cyberflow-inner">
+        <div class="cf-visual reveal"></div>
+        <div>
+          <div class="section-label reveal">Main Project</div>
+          <h2 class="section-title reveal">CyberFlow<em class="accent">.info</em></h2>
+          <p class="section-desc reveal">
+            AI自动化IP运营平台。除了自动回复，最大的亮点是<strong>深度内容SOP生产能力</strong>和<strong>投研能力</strong>——
+            蒸馏成Skills，让每个0基础的小白具备长文输出能力，在输出过程中被动成长，持续迭代认知，最终具备独立判断能力，成长为真正的KOL。
+          </p>
+          <ul class="cf-features">
+            <li class="cf-feature reveal">
+              <div class="cf-feature-icon">📝</div>
+              <div>
+                <div class="cf-feature-title">深度内容 SOP 生产</div>
+                <div class="cf-feature-desc">将投研框架转化为可执行的 content SOP，让高质量长文输出有章可循。</div>
+              </div>
+            </li>
+            <li class="cf-feature reveal">
+              <div class="cf-feature-icon">🤖</div>
+              <div>
+                <div class="cf-feature-title">AI 自动化运营</div>
+                <div class="cf-feature-desc">自动回复、内容分发、互动管理——把重复性工作交给AI，专注于认知输出。</div>
+              </div>
+            </li>
+            <li class="cf-feature reveal">
+              <div class="cf-feature-icon">🎓</div>
+              <div>
+                <div class="cf-feature-title">认知成长闭环</div>
+                <div class="cf-feature-desc">用 Skills 封装投研能力，让用户在内容输出中被动学习，逐步建立独立判断。</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="topo-line"></div>
+
+  <!-- YOUTUBE VIDEOS -->
+  <section class="section" id="videos">
+    <div class="container">
+      <div class="section-label reveal">Video Tutorials</div>
+      <h2 class="section-title reveal">YouTube <em class="accent">免费科普</em></h2>
+      <p class="section-desc reveal">
+        15个视频，用AI运营X账号的完整免费科普。从指纹浏览器、静态IP、IP纯净度、影子封禁到CyberFlow工作流设置——覆盖从0到1的全流程。
+      </p>
+
+      <div class="video-grid">
+        <a href="https://youtube.com/@crazyox" class="video-card reveal" target="_blank">
+          <div class="video-thumb"><span class="video-thumb-icon">▶</span></div>
+          <div class="video-info">
+            <div class="video-title">指纹浏览器原理与选型指南</div>
+            <div class="video-meta">YouTube · 12:34 · 免费</div>
+          </div>
+        </a>
+
+        <a href="https://youtube.com/@crazyox" class="video-card reveal" target="_blank">
+          <div class="video-thumb"><span class="video-thumb-icon">▶</span></div>
+          <div class="video-info">
+            <div class="video-title">静态IP配置与IP纯净度检测</div>
+            <div class="video-meta">YouTube · 15:20 · 免费</div>
+          </div>
+        </a>
+
+        <a href="https://youtube.com/@crazyox" class="video-card reveal" target="_blank">
+          <div class="video-thumb"><span class="video-thumb-icon">▶</span></div>
+          <div class="video-info">
+            <div class="video-title">影子封禁：识别与规避策略</div>
+            <div class="video-meta">YouTube · 10:08 · 免费</div>
+          </div>
+        </a>
+
+        <a href="https://youtube.com/@crazyox" class="video-card reveal" target="_blank">
+          <div class="video-thumb"><span class="video-thumb-icon">▶</span></div>
+          <div class="video-info">
+            <div class="video-title">CyberFlow 工作流完整设置教程</div>
+            <div class="video-meta">YouTube · 18:55 · 免费</div>
+          </div>
+        </a>
+      </div>
+
+      <p style="text-align:center; margin-top:var(--space-lg); color:var(--text-muted); font-size:0.85rem;">
+        <a href="https://youtube.com/@crazyox" target="_blank" style="color:var(--text-muted);">……以及另外 11 个视频，完整覆盖 AI 自动化运营 X 账号的全流程 →</a>
+      </p>
+    </div>
+  </section>
+
+  <div class="topo-line"></div>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto reveal" id="manifesto">
+    <blockquote class="manifesto-quote">
+      我接受所有的失去和别离<br/>
+      也接受所有的美好和获取。
+    </blockquote>
+  </section>
+
+  <div class="topo-line"></div>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="container reveal">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">合作交流</h2>
+      <p class="contact-note">
+        DM 已屏蔽，请发邮件，AI 会帮我过滤汇总。
+      </p>
+      <a href="mailto:crazyox@agent.qq.com" class="contact-email">crazyox@agent.qq.com</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">© 2026 crazyox.ai · 接受所有失去与获取 · <a href="https://github.com/AmberQian" target="_blank" style="color:var(--text-muted);">GitHub</a></p>
+    </div>
+  </footer>
+
+  <script>
+    /* Nav scroll effect */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* Scroll reveal */
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    /* Ticker pause on hover */
+    const ticker = document.getElementById('ticker');
+    ticker.addEventListener('mouseenter', () => ticker.style.animationPlayState = 'paused');
+    ticker.addEventListener('mouseleave', () => ticker.style.animationPlayState = 'running');
+
+    /* GitHub API — fetch real repo data */
+    (async () => {
+      const repos = [
+        'ai-migration-dashboard',
+        'dart-pressure-gauge',
+        'semiconductor-leverage-monitor',
+        'valuation-skill-board',
+        'cyberflow-skills',
+        'perilla-supply-chain',
+      ];
+
+      for (const repo of repos) {
+        try {
+          const res  = await fetch(`https://api.github.com/repos/AmberQian/${repo}`);
+          if (!res.ok) continue;
+          const data = await res.json();
+          const card = document.querySelector(`[data-repo="${repo}"]`);
+          if (card && data.stargazers_count !== undefined) {
+            const starEl = card.querySelector('.gh-card-star');
+            if (starEl) starEl.textContent = `★ ${data.stargazers_count}`;
+          }
+        } catch (e) { /* ignore — static fallback is fine */ }
+      }
+    })();
+  </script>
+</body>
+</html>
