@@ -10,30 +10,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-deep:    #08080f;
-      --bg-surface: #0c0c18;
-      --bg-card:    #111122;
-      --bg-elevated:#1a1a35;
-      --border:     #1f1f40;
-      --border-subtle: #161630;
+      --bg-deep:    #0a0a0a;
+      --bg-surface: #0f0f0f;
+      --bg-card:    #141414;
+      --bg-elevated:#1a1a1a;
+      --border:     #222222;
+      --border-subtle: #1a1a1a;
 
-      --text-primary:   #e0f0ff;
-      --text-secondary: #90a0d0;
-      --text-muted:     #506090;
+      --text-primary:   #e0e0e0;
+      --text-secondary: #888888;
+      --text-muted:     #555555;
 
-      --accent:      #FF00E5;
-      --accent-hover: #FF33EB;
-      --accent-dim:   #8B00B8;
-      --accent-subtle: rgba(255, 0, 229, 0.08);
-      --accent-glow:  rgba(255, 0, 229, 0.3);
-      --accent-cyan:  #00F0FF;
-      --accent-cyan-dim: #00B8CC;
-      --accent-cyan-glow: rgba(0, 240, 255, 0.3);
+      --accent:      #39FF14;
+      --accent-hover: #66ff4d;
+      --accent-dim:   #2a8a0a;
+      --accent-subtle: rgba(57, 255, 20, 0.08);
+      --accent-glow:  rgba(57, 255, 20, 0.3);
 
-      --success: #00F0FF;
+      --success: #39FF14;
       --warning: #ffcc00;
       --danger:  #ff3333;
-      --info:    #00F0FF;
+      --info:    #39FF14;
 
       --font-pixel:   'Press Start 2P', monospace;
       --font-display: 'VT323', monospace;
@@ -154,7 +151,7 @@
       right: -20%;
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 50%), radial-gradient(circle at 30% 70%, var(--accent-cyan-glow) 0%, transparent 50%);
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 50%);
       filter: blur(60px);
       pointer-events: none;
       animation: glitchPulse 4s ease-in-out infinite;
@@ -183,13 +180,13 @@
       line-height: 1.8;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--accent-cyan);
-      border: 2px solid var(--accent-cyan);
+      color: var(--accent);
+      border: 2px solid var(--accent);
       padding: 0.6em 1.2em;
       width: fit-content;
       margin-bottom: var(--space-lg);
       animation: borderFlicker 3s ease-in-out infinite;
-      text-shadow: 0 0 10px var(--accent-cyan-glow);
+      text-shadow: 0 0 10px var(--accent-glow);
     }
 
     @keyframes borderFlicker {
@@ -222,14 +219,14 @@
 
     .hero-title em {
       font-style: normal;
-      color: var(--accent-cyan);
-      text-shadow: 0 0 10px var(--accent-cyan-glow);
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent-glow);
       animation: colorPulse 2s ease-in-out infinite;
     }
 
     @keyframes colorPulse {
-      0%, 100% { color: var(--accent-cyan); text-shadow: 0 0 10px var(--accent-cyan-glow); }
-      50% { color: var(--accent-cyan-dim); text-shadow: 0 0 20px var(--accent-cyan-glow); }
+      0%, 100% { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
+      50% { color: var(--accent-dim); text-shadow: 0 0 20px var(--accent-glow); }
     }
 
     .hero-sub {
@@ -1015,9 +1012,9 @@
       position: fixed;
       top: 0; left: 0;
       height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-cyan));
+      background: var(--accent);
       z-index: 1000;
-      box-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-cyan-glow);
+      box-shadow: 0 0 10px var(--accent-glow);
       transition: width 0.1s;
     }
 
