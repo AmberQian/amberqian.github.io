@@ -10,27 +10,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-deep:    #0a0a0a;
-      --bg-surface: #0f0f0f;
-      --bg-card:    #141414;
-      --bg-elevated:#1a1a1a;
-      --border:     #222222;
-      --border-subtle: #1a1a1a;
+      --bg-deep:    #08080f;
+      --bg-surface: #0c0c18;
+      --bg-card:    #111122;
+      --bg-elevated:#1a1a35;
+      --border:     #1f1f40;
+      --border-subtle: #161630;
 
-      --text-primary:   #e0e0e0;
-      --text-secondary: #888888;
-      --text-muted:     #555555;
+      --text-primary:   #e0f0ff;
+      --text-secondary: #90a0d0;
+      --text-muted:     #506090;
 
-      --accent:      #39FF14;
-      --accent-hover: #66ff4d;
-      --accent-dim:   #2a8a0a;
-      --accent-subtle: rgba(57, 255, 20, 0.08);
-      --accent-glow:  rgba(57, 255, 20, 0.3);
+      --accent:      #FF00E5;
+      --accent-hover: #FF33EB;
+      --accent-dim:   #8B00B8;
+      --accent-subtle: rgba(255, 0, 229, 0.08);
+      --accent-glow:  rgba(255, 0, 229, 0.3);
+      --accent-cyan:  #00F0FF;
+      --accent-cyan-dim: #00B8CC;
+      --accent-cyan-glow: rgba(0, 240, 255, 0.3);
 
-      --success: #39FF14;
+      --success: #00F0FF;
       --warning: #ffcc00;
       --danger:  #ff3333;
-      --info:    #00ccff;
+      --info:    #00F0FF;
 
       --font-pixel:   'Press Start 2P', monospace;
       --font-display: 'VT323', monospace;
@@ -103,8 +106,8 @@
       pointer-events: none;
       z-index: 0;
       background-image:
-        linear-gradient(rgba(57,255,20,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(57,255,20,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(255,0,229,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,0,229,0.03) 1px, transparent 1px);
       background-size: 40px 40px;
       animation: gridScroll 20s linear infinite;
     }
@@ -112,31 +115,6 @@
     @keyframes gridScroll {
       0% { background-position: 0 0; }
       100% { background-position: 40px 40px; }
-    }
-
-    /* ===== FLOATING PIXELS ===== */
-    .floating-pixels {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      overflow: hidden;
-    }
-
-    .pixel-particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: var(--accent);
-      opacity: 0.3;
-      animation: floatPixel linear infinite;
-    }
-
-    @keyframes floatPixel {
-      0% { transform: translateY(100vh) scale(0); opacity: 0; }
-      10% { opacity: 0.3; }
-      90% { opacity: 0.3; }
-      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
     }
 
     /* ===== TOPO LINE ===== */
@@ -150,6 +128,7 @@
         transparent 4px,
         transparent 8px
       );
+      background-size: 200% 100%;
       opacity: 0.5;
       margin: var(--space-lg) 0;
       animation: pixelDash 1s linear infinite;
@@ -175,7 +154,7 @@
       right: -20%;
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 50%), radial-gradient(circle at 30% 70%, var(--accent-cyan-glow) 0%, transparent 50%);
       filter: blur(60px);
       pointer-events: none;
       animation: glitchPulse 4s ease-in-out infinite;
@@ -204,18 +183,18 @@
       line-height: 1.8;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--accent);
-      border: 2px solid var(--accent);
+      color: var(--accent-cyan);
+      border: 2px solid var(--accent-cyan);
       padding: 0.6em 1.2em;
       width: fit-content;
       margin-bottom: var(--space-lg);
       animation: borderFlicker 3s ease-in-out infinite;
-      text-shadow: 0 0 10px var(--accent-glow);
+      text-shadow: 0 0 10px var(--accent-cyan-glow);
     }
 
     @keyframes borderFlicker {
       0%, 100% { border-color: var(--accent); box-shadow: 0 0 5px var(--accent-glow); }
-      50% { border-color: var(--accent-dim); box-shadow: 0 0 2px rgba(57,255,20,0.1); }
+      50% { border-color: var(--accent-dim); box-shadow: 0 0 2px rgba(255,0,229,0.1); }
       75% { border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
     }
 
@@ -229,27 +208,28 @@
       text-transform: uppercase;
       text-shadow: 
         0 0 10px var(--accent-glow),
-        0 0 40px rgba(57,255,20,0.2),
+        0 0 40px rgba(0,240,255,0.2),
         4px 4px 0px var(--accent-dim);
       animation: textGlitch 5s ease-in-out infinite;
     }
 
     @keyframes textGlitch {
-      0%, 100% { text-shadow: 0 0 10px var(--accent-glow), 0 0 40px rgba(57,255,20,0.2), 4px 4px 0px var(--accent-dim); }
-      25% { text-shadow: 0 0 15px var(--accent-glow), 0 0 60px rgba(57,255,20,0.3), -2px 4px 0px var(--accent-dim); }
-      50% { text-shadow: 0 0 5px var(--accent-glow), 0 0 30px rgba(57,255,20,0.1), 4px -2px 0px var(--accent-dim); }
-      75% { text-shadow: 0 0 20px var(--accent-glow), 0 0 80px rgba(57,255,20,0.4), -4px -4px 0px var(--accent-dim); }
+      0%, 100% { text-shadow: 0 0 10px var(--accent-glow), 0 0 40px rgba(0,240,255,0.2), 4px 4px 0px var(--accent-dim); }
+      25% { text-shadow: 0 0 15px var(--accent-glow), 0 0 60px rgba(0,240,255,0.3), -2px 4px 0px var(--accent-dim); }
+      50% { text-shadow: 0 0 5px var(--accent-glow), 0 0 30px rgba(255,0,229,0.1), 4px -2px 0px var(--accent-dim); }
+      75% { text-shadow: 0 0 20px var(--accent-glow), 0 0 80px rgba(0,240,255,0.4), -4px -4px 0px var(--accent-dim); }
     }
 
     .hero-title em {
       font-style: normal;
-      color: var(--accent);
+      color: var(--accent-cyan);
+      text-shadow: 0 0 10px var(--accent-cyan-glow);
       animation: colorPulse 2s ease-in-out infinite;
     }
 
     @keyframes colorPulse {
-      0%, 100% { color: var(--accent); }
-      50% { color: var(--accent-hover); }
+      0%, 100% { color: var(--accent-cyan); text-shadow: 0 0 10px var(--accent-cyan-glow); }
+      50% { color: var(--accent-cyan-dim); text-shadow: 0 0 20px var(--accent-cyan-glow); }
     }
 
     .hero-sub {
@@ -375,7 +355,7 @@
       text-transform: uppercase;
       white-space: nowrap;
       color: var(--text-muted);
-      text-shadow: 0 0 5px rgba(57,255,20,0.1);
+      text-shadow: 0 0 5px rgba(255,0,229,0.1);
     }
 
     .ticker span::after {
@@ -750,8 +730,8 @@
         0deg,
         transparent,
         transparent 2px,
-        rgba(57,255,20,0.05) 2px,
-        rgba(57,255,20,0.05) 4px
+        rgba(255,0,229,0.05) 2px,
+        rgba(255,0,229,0.05) 4px
       );
     }
 
@@ -1035,9 +1015,9 @@
       position: fixed;
       top: 0; left: 0;
       height: 3px;
-      background: var(--accent);
+      background: linear-gradient(90deg, var(--accent), var(--accent-cyan));
       z-index: 1000;
-      box-shadow: 0 0 10px var(--accent-glow);
+      box-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-cyan-glow);
       transition: width 0.1s;
     }
 
@@ -1054,7 +1034,6 @@
 
   <!-- PIXEL GRID BACKGROUND -->
   <div class="pixel-grid"></div>
-  <div class="floating-pixels" id="pixels"></div>
   <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- NAV -->
@@ -1457,19 +1436,6 @@
     const ticker = document.getElementById('ticker');
     ticker.addEventListener('mouseenter', () => ticker.style.animationPlayState = 'paused');
     ticker.addEventListener('mouseleave', () => ticker.style.animationPlayState = 'running');
-
-    /* Floating pixels */
-    const pixelsContainer = document.getElementById('pixels');
-    for (let i = 0; i < 30; i++) {
-      const pixel = document.createElement('div');
-      pixel.className = 'pixel-particle';
-      pixel.style.left = Math.random() * 100 + '%';
-      pixel.style.animationDuration = (Math.random() * 10 + 10) + 's';
-      pixel.style.animationDelay = Math.random() * 10 + 's';
-      pixel.style.width = (Math.random() * 4 + 2) + 'px';
-      pixel.style.height = pixel.style.width;
-      pixelsContainer.appendChild(pixel);
-    }
 
     /* GitHub API — fetch real repo data */
     (async () => {
