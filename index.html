@@ -7,1414 +7,1205 @@
   <meta name="description" content="AI板块价值迁徙、半导体杠杆监控、CyberFlow AI自动化IP运营——深度投研视角与AI工具集成" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-deep:    #FFFFFF;
-      --bg-surface: #F8FAF9;
-      --bg-card:    #FFFFFF;
-      --bg-elevated:#EEF3F1;
-      --border:     #D8E0DD;
-      --border-subtle: #E8EEEC;
+      --sky-50:  #f0f9ff;
+      --sky-100: #e0f2fe;
+      --sky-200: #bae6fd;
+      --sky-300: #7dd3fc;
+      --sky-400: #38bdf8;
+      --sky-500: #0ea5e9;
+      --sky-600: #0284c7;
+      --sky-700: #0369a1;
 
-      --text-primary:   #1A1A2E;
-      --text-secondary: #5A6B6B;
-      --text-muted:     #94A3A3;
+      --pink-100: #fce7f3;
+      --pink-300: #f9a8d4;
+      --pink-400: #f472b6;
+      --pink-500: #ec4899;
 
-      --accent:      #0ABAB5;
-      --accent-hover: #2DD4C8;
-      --accent-dim:   #0D9488;
-      --accent-subtle: rgba(10, 186, 181, 0.06);
-      --accent-glow:  rgba(10, 186, 181, 0.15);
+      --yellow-100: #fef3c7;
+      --yellow-300: #fcd34d;
+      --yellow-400: #fbbf24;
+      --yellow-500: #f59e0b;
 
-      --success: #0ABAB5;
-      --warning: #F59E0B;
-      --danger:  #EF4444;
-      --info:    #0ABAB5;
+      --mint-100: #d1fae5;
+      --mint-400: #34d399;
+      --mint-500: #10b981;
 
-      --font-pixel:   'Press Start 2P', monospace;
-      --font-display: 'VT323', monospace;
-      --font-body:    'Noto Sans SC', 'PingFang SC', system-ui, sans-serif;
-      --font-serif:   'Noto Serif SC', 'Songti SC', serif;
+      --bg:        #f0f9ff;
+      --bg-soft:   #e0f2fe;
+      --bg-card:   #ffffff;
+      --bg-card-2: #f8fafc;
+      --border:    #e2e8f0;
+      --border-soft: #f1f5f9;
 
-      --space-xs:  0.25rem;
-      --space-sm:  0.5rem;
-      --space-md:  1rem;
-      --space-lg:  2rem;
-      --space-xl:  4rem;
+      --text-main:    #1e293b;
+      --text-body:    #475569;
+      --text-muted:   #94a3b8;
+      --text-light:   #cbd5e1;
 
-      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --accent:      #0ea5e9;
+      --accent-2:    #f472b6;
+      --accent-3:    #fbbf24;
+      --accent-hover: #0284c7;
+      --accent-soft: rgba(14, 165, 233, 0.08);
+      --accent-glow:  rgba(14, 165, 233, 0.2);
+
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --radius-full: 999px;
+
+      --shadow-xs: 0 1px 2px rgba(30, 41, 59, 0.04);
+      --shadow-sm: 0 2px 8px rgba(30, 41, 59, 0.06);
+      --shadow-md: 0 4px 16px rgba(30, 41, 59, 0.08);
+      --shadow-lg: 0 12px 32px rgba(30, 41, 59, 0.1);
+      --shadow-xl: 0 24px 48px rgba(30, 41, 59, 0.12);
+
+      --font-display: 'Quicksand', 'Noto Sans SC', sans-serif;
+      --font-body:    'Nunito', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif;
+
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html {
-      scroll-behavior: smooth;
-      scrollbar-width: thin;
-      scrollbar-color: var(--accent-dim) var(--bg-deep);
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--font-body);
-      background: var(--bg-deep);
-      color: var(--text-primary);
+      background: var(--bg);
+      color: var(--text-main);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      cursor: crosshair;
     }
 
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
     button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
 
-    .container { width: min(1200px, 90vw); margin-inline: auto; }
-    .section { padding: var(--space-xl) 0; }
+    .container { width: min(1160px, 92vw); margin-inline: auto; }
+    .section { padding: var(--space-3xl) 0; }
 
-    .accent { color: var(--accent-hover); }
-
-    /* ===== PIXEL SCROLLBAR ===== */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-deep); }
-    ::-webkit-scrollbar-thumb { background: var(--accent-dim); border: 2px solid var(--bg-deep); }
-    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-
-    /* ===== SCANLINES (CRT EFFECT) ===== */
-    body::after {
-      content: '';
+    /* ===== FLOATING BLOBS ===== */
+    .blob {
       position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9999;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.04) 2px,
-        rgba(0,0,0,0.04) 4px
-      );
-      opacity: 0.4;
-    }
-
-    /* ===== PIXEL GRID BACKGROUND ===== */
-    .pixel-grid {
-      position: fixed;
-      inset: 0;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.45;
       pointer-events: none;
       z-index: 0;
-      background-image:
-        linear-gradient(rgba(10,186,181,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(10,186,181,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      animation: gridScroll 20s linear infinite;
-    }
-
-    @keyframes gridScroll {
-      0% { background-position: 0 0; }
-      100% { background-position: 40px 40px; }
-    }
-
-    /* ===== TOPO LINE ===== */
-    .topo-line {
-      width: 100%;
-      height: 2px;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--accent) 0px,
-        var(--accent) 4px,
-        transparent 4px,
-        transparent 8px
-      );
-      background-size: 200% 100%;
-      opacity: 0.5;
-      margin: var(--space-lg) 0;
-      animation: pixelDash 1s linear infinite;
-    }
-
-    @keyframes pixelDash {
-      0% { background-position: 0 0; }
-      100% { background-position: 8px 0; }
-    }
-
-    /* ===== HERO ===== */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-rows: 1fr auto;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-glitch {
-      position: absolute;
-      top: -40%;
-      right: -20%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 50%);
-      filter: blur(60px);
-      pointer-events: none;
-      animation: glitchPulse 4s ease-in-out infinite;
-    }
-
-    @keyframes glitchPulse {
-      0%, 100% { opacity: 0.3; transform: scale(1); }
-      25% { opacity: 0.5; transform: scale(1.05) translate(10px, -5px); }
-      50% { opacity: 0.2; transform: scale(0.95) translate(-5px, 10px); }
-      75% { opacity: 0.4; transform: scale(1.02) translate(5px, 5px); }
-    }
-
-    .hero-inner {
-      container-type: inline-size;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: var(--space-xl) var(--space-md);
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-tag {
-      font-family: var(--font-pixel);
-      font-size: 0.55rem;
-      line-height: 1.8;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 2px solid var(--accent);
-      padding: 0.6em 1.2em;
-      width: fit-content;
-      margin-bottom: var(--space-lg);
-      animation: borderFlicker 3s ease-in-out infinite;
-      text-shadow: 0 0 10px var(--accent-glow);
-    }
-
-    @keyframes borderFlicker {
-      0%, 100% { border-color: var(--accent); box-shadow: 0 0 5px var(--accent-glow); }
-      50% { border-color: var(--accent-dim); box-shadow: 0 0 2px rgba(10,186,181,0.1); }
-      75% { border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
-    }
-
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(4rem, 10vw, 9rem);
-      font-weight: 400;
-      line-height: 0.9;
-      letter-spacing: -0.02em;
-      margin-bottom: var(--space-md);
-      text-transform: uppercase;
-      text-shadow: 
-        0 0 10px var(--accent-glow),
-        0 0 40px rgba(10,186,181,0.08),
-        4px 4px 0px var(--accent-dim);
-      animation: textGlitch 5s ease-in-out infinite;
-    }
-
-    @keyframes textGlitch {
-      0%, 100% { text-shadow: 0 0 10px var(--accent-glow), 0 0 40px rgba(10,186,181,0.08), 4px 4px 0px var(--accent-dim); }
-      25% { text-shadow: 0 0 15px var(--accent-glow), 0 0 60px rgba(10,186,181,0.1), -2px 4px 0px var(--accent-dim); }
-      50% { text-shadow: 0 0 5px var(--accent-glow), 0 0 30px rgba(10,186,181,0.1), 4px -2px 0px var(--accent-dim); }
-      75% { text-shadow: 0 0 20px var(--accent-glow), 0 0 80px rgba(10,186,181,0.12), -4px -4px 0px var(--accent-dim); }
-    }
-
-    .hero-title em {
-      font-style: normal;
-      color: var(--accent);
-      text-shadow: 0 0 10px var(--accent-glow);
-      animation: colorPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes colorPulse {
-      0%, 100% { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
-      50% { color: var(--accent-dim); text-shadow: 0 0 20px var(--accent-glow); }
-    }
-
-    .hero-sub {
-      font-family: var(--font-serif);
-      font-size: clamp(1rem, 2vw, 1.35rem);
-      color: var(--text-secondary);
-      max-width: 55ch;
-      margin-bottom: var(--space-lg);
-      line-height: 1.8;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: var(--space-md);
-      flex-wrap: wrap;
-    }
-
-    /* ===== PIXEL BUTTONS ===== */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5em;
-      padding: 1em 2em;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      transition: all 0.1s;
-      font-family: var(--font-body);
-      position: relative;
-      border: 2px solid var(--accent);
-      background: var(--accent-subtle);
-      color: var(--accent);
-      clip-path: polygon(
-        0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)
-      );
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      inset: 2px;
-      background: transparent;
-      clip-path: polygon(
-        0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px)
-      );
-      pointer-events: none;
-    }
-
-    .btn:hover {
-      background: var(--accent);
-      color: var(--bg-deep);
-      transform: translate(-2px, -2px);
-      box-shadow: 4px 4px 0px var(--accent-dim);
-    }
-
-    .btn:active {
-      transform: translate(0, 0);
-      box-shadow: none;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: var(--bg-deep);
-      font-weight: 700;
-      box-shadow: 4px 4px 0px var(--accent-dim);
-    }
-    .btn-primary:hover {
-      box-shadow: 6px 6px 0px var(--accent-dim), 0 0 20px var(--accent-glow);
-    }
-
-    .btn-ghost {
-      border-color: var(--border);
-      color: var(--text-secondary);
-      box-shadow: none;
-    }
-    .btn-ghost:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      box-shadow: 4px 4px 0px var(--accent-dim);
-    }
-
-    /* ===== TICKER ===== */
-    .ticker-wrap {
-      border-top: 2px solid var(--accent);
-      border-bottom: 2px solid var(--accent);
-      overflow: hidden;
-      padding: 1em 0;
-      background: var(--bg-surface);
-      position: relative;
-    }
-
-    .ticker-wrap::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 80px;
-      background: linear-gradient(90deg, var(--bg-surface), transparent);
-      z-index: 2;
-      pointer-events: none;
-    }
-    .ticker-wrap::after {
-      content: '';
-      position: absolute;
-      right: 0; top: 0; bottom: 0;
-      width: 80px;
-      background: linear-gradient(270deg, var(--bg-surface), transparent);
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .ticker {
-      display: flex;
-      gap: 3em;
-      animation: ticker 30s linear infinite;
-      width: max-content;
-    }
-
-    .ticker span {
-      font-family: var(--font-pixel);
-      font-size: 0.6rem;
-      line-height: 2;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      color: var(--text-muted);
-      text-shadow: 0 0 5px rgba(10,186,181,0.1);
-    }
-
-    .ticker span::after {
-      content: '◆';
-      margin-left: 3em;
-      color: var(--accent);
-      animation: diamondPulse 1s ease-in-out infinite;
-    }
-
-    @keyframes diamondPulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    @keyframes ticker {
-      to { transform: translateX(-50%); }
-    }
-
-    /* ===== SECTION HEADER ===== */
-    .section-label {
-      font-family: var(--font-pixel);
-      font-size: 0.55rem;
-      line-height: 1.8;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: var(--space-sm);
-      text-shadow: 0 0 5px var(--accent-glow);
-    }
-
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      margin-bottom: var(--space-md);
-      text-transform: uppercase;
-      text-shadow: 2px 2px 0px var(--accent-dim);
-    }
-
-    .section-desc {
-      color: var(--text-secondary);
-      max-width: 60ch;
-      margin-bottom: var(--space-lg);
-      line-height: 1.8;
-    }
-
-    /* ===== DASH-GRID (tools) ===== */
-    .dash-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
-      gap: var(--space-md);
-    }
-
-    .dash-card {
-      background: var(--bg-card);
-      border: 2px solid var(--border-subtle);
-      padding: var(--space-lg);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.15s;
-      display: flex;
-      flex-direction: column;
-      clip-path: polygon(
-        0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)
-      );
-    }
-
-    .dash-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--accent);
-      transform: scaleY(0);
-      transform-origin: top;
-      transition: transform 0.3s var(--ease-out-expo);
-    }
-
-    .dash-card:hover {
-      border-color: var(--accent);
-      transform: translate(-4px, -4px);
-      box-shadow: 4px 4px 0px var(--accent-dim), 0 0 30px var(--accent-glow);
-    }
-    .dash-card:hover::before { transform: scaleY(1); }
-
-    .dash-card-icon {
-      font-size: 1.5rem;
-      margin-bottom: var(--space-md);
-      display: block;
-      font-family: var(--font-pixel);
-    }
-
-    .dash-card-title {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      font-weight: 400;
-      margin-bottom: 0.5em;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-    }
-
-    .dash-card-desc {
-      font-size: 0.88rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      flex: 1;
-    }
-
-    .dash-card-tag {
-      display: inline-block;
-      margin-top: var(--space-md);
-      font-size: 0.6rem;
-      font-family: var(--font-pixel);
-      line-height: 1.8;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent-dim);
-      padding: 0.4em 0.8em;
-      animation: borderFlicker 4s ease-in-out infinite;
-    }
-
-    .dash-card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4em;
-      margin-top: var(--space-md);
-      font-size: 0.82rem;
-      color: var(--accent);
-      font-family: var(--font-display);
-      letter-spacing: 0.03em;
-      transition: gap 0.3s;
-      text-transform: uppercase;
-    }
-    .dash-card-link:hover { gap: 0.8em; color: var(--accent-hover); }
-
-    /* ===== CONTENT GRID ===== */
-    .content-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
-      gap: var(--space-md);
-    }
-
-    .content-card {
-      background: var(--bg-card);
-      border: 2px solid var(--border-subtle);
-      padding: var(--space-lg);
-      transition: all 0.15s;
-      position: relative;
-      clip-path: polygon(
-        0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)
-      );
-    }
-
-    .content-card:hover {
-      border-color: var(--accent);
-      transform: translate(-3px, -3px);
-      box-shadow: 3px 3px 0px var(--accent-dim), 0 0 20px var(--accent-glow);
-    }
-
-    .content-card-num {
-      font-family: var(--font-display);
-      font-size: 3.5rem;
-      font-weight: 400;
-      line-height: 1;
-      color: var(--accent-dim);
-      margin-bottom: var(--space-sm);
-      text-shadow: 0 0 10px var(--accent-glow);
-      animation: numGlow 3s ease-in-out infinite;
-    }
-
-    @keyframes numGlow {
-      0%, 100% { text-shadow: 0 0 10px var(--accent-glow); color: var(--accent-dim); }
-      50% { text-shadow: 0 0 20px var(--accent-glow); color: var(--accent); }
-    }
-
-    .content-card-title {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      font-weight: 400;
-      margin-bottom: 0.5em;
-      text-transform: uppercase;
-    }
-
-    .content-card-desc {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    .content-card-count {
-      font-size: 0.6rem;
-      color: var(--text-muted);
-      margin-top: var(--space-md);
-      font-family: var(--font-pixel);
-      line-height: 1.8;
-      letter-spacing: 0.05em;
-    }
-
-    .content-articles {
-      margin-top: var(--space-md);
-      border-top: 1px solid var(--border-subtle);
-      padding-top: var(--space-md);
-    }
-
-    .content-article-item {
-      display: flex;
-      align-items: baseline;
-      gap: var(--space-sm);
-      padding: 0.35em 0;
-      font-size: 0.85rem;
-      border-bottom: 1px dashed var(--border-subtle);
-    }
-
-    .content-article-item:last-child { border-bottom: none; }
-
-    .content-article-date {
-      font-family: var(--font-pixel);
-      font-size: 0.55rem;
-      color: var(--text-muted);
-      white-space: nowrap;
-      letter-spacing: 0.03em;
-      min-width: 72px;
-    }
-
-    .content-article-title {
-      color: var(--text-secondary);
-      transition: color 0.15s, text-shadow 0.15s;
-      text-decoration: none;
-      line-height: 1.5;
-    }
-
-    .content-article-title:hover {
-      color: var(--accent);
-      text-shadow: 0 0 8px var(--accent-glow);
-    }
-
-    .content-article-more {
-      display: block;
-      margin-top: 0.5em;
-      font-family: var(--font-pixel);
-      font-size: 0.55rem;
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
-    }
-
-    .content-article-empty {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-style: italic;
-      padding: 0.5em 0;
-    }
-
-    /* ===== GITHUB TOOLS ===== */
-    .gh-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
-      gap: var(--space-md);
-    }
-
-    .gh-card {
-      background: var(--bg-card);
-      border: 2px solid var(--border-subtle);
-      padding: var(--space-lg);
-      transition: all 0.15s;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-      clip-path: polygon(
-        0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)
-      );
-    }
-
-    .gh-card:hover {
-      border-color: var(--accent);
-      transform: translate(-3px, -3px);
-      box-shadow: 3px 3px 0px var(--accent-dim), 0 0 20px var(--accent-glow);
-    }
-
-    .gh-card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: var(--space-sm);
-    }
-
-    .gh-card-name {
-      font-family: var(--font-display);
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: var(--accent);
-      text-transform: uppercase;
-    }
-
-    .gh-card-star {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      font-family: var(--font-pixel);
-      line-height: 1.8;
-      display: flex;
-      align-items: center;
-      gap: 0.3em;
-      flex-shrink: 0;
-    }
-
-    .gh-card-desc {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      flex: 1;
-    }
-
-    .gh-card-lang {
-      margin-top: var(--space-md);
-      display: flex;
-      gap: 0.8em;
-      flex-wrap: wrap;
-    }
-
-    .gh-lang-dot {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3em;
-      font-size: 0.6rem;
-      color: var(--text-muted);
-      font-family: var(--font-pixel);
-      line-height: 1.8;
-    }
-
-    .gh-lang-dot::before {
-      content: '';
-      width: 8px;
-      height: 8px;
-      background: var(--accent);
-      display: inline-block;
-      animation: dotBlink 2s ease-in-out infinite;
-    }
-
-    @keyframes dotBlink {
-      0%, 100% { opacity: 1; box-shadow: 0 0 5px var(--accent); }
-      50% { opacity: 0.4; box-shadow: 0 0 2px var(--accent); }
-    }
-
-    .gh-card-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4em;
-      margin-top: var(--space-md);
-      font-size: 0.82rem;
-      color: var(--accent);
-      font-family: var(--font-display);
-      letter-spacing: 0.03em;
-      transition: gap 0.3s;
-      text-transform: uppercase;
-    }
-    .gh-card-cta:hover { gap: 0.8em; color: var(--accent-hover); }
-
-    /* ===== CYBERFLOW ===== */
-    .cyberflow {
-      background: var(--bg-surface);
-      border-top: 2px solid var(--border);
-      border-bottom: 2px solid var(--border);
-      position: relative;
-    }
-
-    .cyberflow::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--accent);
-      animation: scanline 4s ease-in-out infinite;
-      opacity: 0.5;
-    }
-
-    @keyframes scanline {
-      0%, 100% { transform: translateX(-100%); opacity: 0; }
-      50% { transform: translateX(100%); opacity: 0.5; }
-    }
-
-    .cyberflow-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-xl);
-      align-items: center;
-    }
-
-    @container (max-width: 700px) {
-      .cyberflow-inner { grid-template-columns: 1fr; }
-    }
-
-    .cf-visual {
-      background: var(--bg-card);
-      border: 2px solid var(--accent);
-      aspect-ratio: 4/3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      animation: borderFlicker 3s ease-in-out infinite;
-      clip-path: polygon(
-        0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px)
-      );
-    }
-
-    .cf-visual::after {
-      content: 'CyberFlow.info';
-      font-family: var(--font-pixel);
-      font-size: 0.8rem;
-      line-height: 2;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      text-shadow: 0 0 10px var(--accent-glow);
-      animation: textGlitch 3s ease-in-out infinite;
-    }
-
-    .cf-visual::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(10,186,181,0.05) 2px,
-        rgba(10,186,181,0.05) 4px
-      );
-    }
-
-    .cf-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-md);
-    }
-
-    .cf-feature {
-      display: flex;
-      gap: var(--space-md);
-      align-items: flex-start;
-      padding: var(--space-md);
-      border-left: 4px solid var(--border);
-      transition: all 0.15s;
-    }
-
-    .cf-feature:hover { 
-      border-color: var(--accent); 
-      transform: translateX(4px);
-      background: var(--accent-subtle);
-    }
-
-    .cf-feature-icon {
-      flex-shrink: 0;
-      width: 2.5rem;
-      height: 2.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--accent-subtle);
-      font-size: 1rem;
-      font-family: var(--font-pixel);
-      border: 1px solid var(--accent-dim);
-      color: var(--accent);
-    }
-
-    .cf-feature-title {
-      font-weight: 600;
-      margin-bottom: 0.3em;
-      font-size: 0.95rem;
-      font-family: var(--font-display);
-      text-transform: uppercase;
-    }
-
-    .cf-feature-desc {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* ===== VIDEO GRID ===== */
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
-      gap: var(--space-md);
-    }
-
-    .video-card {
-      background: var(--bg-card);
-      border: 2px solid var(--border-subtle);
-      overflow: hidden;
-      transition: all 0.15s;
-      clip-path: polygon(
-        0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)
-      );
-    }
-
-    .video-card:hover {
-      border-color: var(--accent);
-      transform: translate(-3px, -3px);
-      box-shadow: 3px 3px 0px var(--accent-dim), 0 0 20px var(--accent-glow);
-    }
-
-    .video-thumb {
-      aspect-ratio: 16/9;
-      background: var(--bg-elevated);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 2px solid var(--border);
-    }
-
-    .video-thumb-icon {
-      font-size: 2rem;
-      font-family: var(--font-pixel);
-      color: var(--accent);
-      opacity: 0.7;
-      animation: playPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes playPulse {
-      0%, 100% { opacity: 0.7; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.1); text-shadow: 0 0 20px var(--accent-glow); }
-    }
-
-    .video-thumb::after {
-      content: '15:42';
-      position: absolute;
-      bottom: 0.5em;
-      right: 0.5em;
-      background: var(--bg-deep);
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      font-size: 0.6rem;
-      font-family: var(--font-pixel);
-      line-height: 1.8;
-      padding: 0.3em 0.6em;
-    }
-
-    .video-info {
-      padding: var(--space-md);
-    }
-
-    .video-title {
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin-bottom: 0.4em;
-      line-height: 1.4;
-      font-family: var(--font-display);
-      text-transform: uppercase;
-    }
-
-    .video-meta {
-      font-size: 0.6rem;
-      color: var(--text-muted);
-      font-family: var(--font-pixel);
-      line-height: 1.8;
-    }
-
-    /* ===== MANIFESTO ===== */
-    .manifesto {
-      text-align: center;
-      max-width: 65ch;
-      margin: 0 auto;
-      padding: var(--space-xl) var(--space-md);
-      position: relative;
-    }
-
-    .manifesto::before {
-      content: '◆ ◆ ◆';
-      font-family: var(--font-pixel);
-      font-size: 0.5rem;
-      color: var(--accent-dim);
-      display: block;
-      margin-bottom: 2rem;
-      letter-spacing: 1em;
-      animation: diamondPulse 2s ease-in-out infinite;
-    }
-
-    .manifesto {
-      color: var(--accent);
-      font-style: normal;
-      text-shadow: 0 0 10px var(--accent-glow);
-    }
-
-    /* ===== CONTACT ===== */
-    .contact-section {
-      text-align: center;
-      padding: var(--space-xl) 0;
-      border-top: 2px solid var(--border);
-      position: relative;
-    }
-
-    .contact-email {
-      font-family: var(--font-pixel);
-      font-size: clamp(0.8rem, 3vw, 1.2rem);
-      line-height: 1.8;
-      color: var(--accent);
-      display: inline-block;
-      margin: var(--space-md) 0;
-      position: relative;
-      text-shadow: 0 0 10px var(--accent-glow);
-      animation: borderFlicker 3s ease-in-out infinite;
-      border: 2px solid var(--accent);
-      padding: 0.5em 1em;
-      letter-spacing: 0.05em;
-    }
-
-    .contact-email:hover {
-      background: var(--accent);
-      color: var(--bg-deep);
-      text-shadow: none;
-      box-shadow: 4px 4px 0px var(--accent-dim), 0 0 30px var(--accent-glow);
-    }
-
-    .contact-note {
-      color: var(--text-secondary);
-      max-width: 50ch;
-      margin: var(--space-sm) auto 0;
-      font-size: 0.85rem;
-      line-height: 1.7;
+      animation: blobFloat 20s ease-in-out infinite;
+    }
+    .blob-1 { width: 360px; height: 360px; background: var(--sky-200); top: -120px; right: -80px; }
+    .blob-2 { width: 280px; height: 280px; background: var(--pink-100); top: 40vh; left: -120px; animation-delay: -5s; }
+    .blob-3 { width: 320px; height: 320px; background: var(--yellow-100); bottom: 10vh; right: -60px; animation-delay: -10s; }
+    .blob-4 { width: 240px; height: 240px; background: var(--mint-100); top: 110vh; left: 10vw; animation-delay: -15s; }
+
+    @keyframes blobFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(20px, -30px) scale(1.05); }
+      50% { transform: translate(-20px, 20px) scale(0.95); }
+      75% { transform: translate(30px, 10px) scale(1.02); }
     }
 
     /* ===== NAV ===== */
     .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: sticky;
+      top: 0;
       z-index: 100;
-      padding: 1em 0;
-      backdrop-filter: blur(12px);
-      background: rgba(255, 255, 255, 0.95);
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.3s;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
     }
-
-    .nav.scrolled { border-bottom-color: var(--accent); }
-
     .nav-inner {
       display: flex;
+      align-items: center;
       justify-content: space-between;
+      padding: 0.75rem 0;
+      gap: var(--space-md);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-logo .ox {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--accent-2), var(--pink-400));
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 12px rgba(244, 114, 182, 0.25);
+      transform: rotate(-6deg);
+      transition: transform 0.3s;
+    }
+    .nav-logo:hover .ox { transform: rotate(6deg) scale(1.1); }
+    .nav-links { display: flex; gap: 0.5rem; list-style: none; flex-wrap: wrap; }
+    .nav-links a {
+      display: flex; align-items: center; gap: 0.4rem;
+      padding: 0.6rem 0.9rem;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--text-body);
+      transition: all 0.2s;
+    }
+    .nav-links a:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .nav-links a .icon { font-size: 1.1rem; }
+
+    @media (max-width: 768px) {
+      .nav-links a { padding: 0.5rem 0.7rem; font-size: 0.75rem; }
+      .nav-links a span:not(.icon) { display: none; }
+      .nav-links a .icon { font-size: 1.25rem; }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      padding: var(--space-2xl) 0;
+      overflow: hidden;
+      min-height: 92vh;
+      display: flex; align-items: center;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-xl);
+      align-items: center;
+      position: relative; z-index: 1;
+    }
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-inner .hero-actions { justify-content: center; }
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem; font-weight: 600;
+      color: var(--accent);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: var(--space-lg);
+      width: fit-content;
+    }
+    .hero-badge .sparkle { font-size: 1.1rem; }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: var(--space-md);
+    }
+    .hero-title .highlight { color: var(--accent); position: relative; display: inline-block; }
+    .hero-title .highlight::after {
+      content: '';
+      position: absolute; bottom: 0.1em; left: -0.1em; right: -0.1em;
+      height: 0.25em;
+      background: var(--yellow-300);
+      border-radius: var(--radius-full);
+      opacity: 0.6;
+      z-index: -1;
+      transform: rotate(-2deg);
+    }
+    .hero-title .emoji-wand { display: inline-block; animation: wiggle 2s ease-in-out infinite; }
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-8deg); }
+      50% { transform: rotate(8deg); }
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: var(--text-body);
+      max-width: 48ch;
+      margin-bottom: var(--space-xl);
+    }
+    .hero-actions { display: flex; gap: var(--space-md); flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.95rem 1.8rem;
+      border-radius: var(--radius-full);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: var(--shadow-sm);
+    }
+    .btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: var(--shadow-lg); }
+    .btn:active { transform: translateY(0) scale(0.98); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--sky-400));
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
+    }
+    .btn-primary:hover { box-shadow: 0 12px 28px rgba(14, 165, 233, 0.35); }
+    .btn-ghost {
+      background: #fff;
+      color: var(--text-body);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-visual {
+      position: relative;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .hero-card {
+      background: #fff;
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--border);
+      max-width: 420px;
+      transform: rotate(2deg);
+      transition: transform 0.4s;
+    }
+    .hero-card:hover { transform: rotate(-1deg) translateY(-5px); }
+    .hero-card-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: var(--space-lg);
+    }
+    .hero-card-avatar {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sky-200), var(--sky-300));
+      display: grid; place-items: center;
+      font-size: 1.6rem;
+      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
+    }
+    .hero-card-title { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; }
+    .hero-card-sub { font-size: 0.8rem; color: var(--text-muted); }
+    .hero-chart-row {
+      display: flex; align-items: flex-end; gap: 0.5rem;
+      height: 90px; margin-bottom: var(--space-md);
+    }
+    .hero-chart-bar {
+      flex: 1;
+      border-radius: 8px 8px 0 0;
+      background: linear-gradient(180deg, var(--accent), var(--sky-200));
+      opacity: 0.8;
+      animation: barGrow 1.2s ease-out both;
+    }
+    .hero-chart-bar:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+    .hero-chart-bar:nth-child(2) { height: 70%; animation-delay: 0.2s; }
+    .hero-chart-bar:nth-child(3) { height: 55%; animation-delay: 0.3s; background: linear-gradient(180deg, var(--accent-2), var(--pink-100)); }
+    .hero-chart-bar:nth-child(4) { height: 90%; animation-delay: 0.4s; }
+    .hero-chart-bar:nth-child(5) { height: 65%; animation-delay: 0.5s; }
+    .hero-chart-bar:nth-child(6) { height: 80%; animation-delay: 0.6s; background: linear-gradient(180deg, var(--accent-3), var(--yellow-100)); }
+    @keyframes barGrow { from { height: 0; opacity: 0; } }
+    .hero-card-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .hero-card-tag {
+      font-size: 0.75rem; font-weight: 600;
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-card-2);
+      color: var(--text-body);
+    }
+
+    /* ===== TICKER ===== */
+    .ticker-wrap {
+      background: #fff;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .ticker {
+      display: flex; gap: 2.5rem;
+      animation: ticker 35s linear infinite;
+      width: max-content;
+    }
+    .ticker-wrap:hover .ticker { animation-play-state: paused; }
+    .ticker span {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.85rem; font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .ticker span::before { content: '✨'; }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+
+    /* ===== SECTION HEADERS ===== */
+    .section-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto var(--space-2xl);
+    }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem; font-weight: 700;
+      margin-bottom: var(--space-md);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: var(--space-md);
+    }
+    .section-title .accent-text { color: var(--accent); }
+    .section-desc {
+      font-size: 1.05rem; color: var(--text-body);
+    }
+
+    /* ===== DASHBOARD CARDS ===== */
+    .dash-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-lg);
+    }
+    .dash-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+    }
+    .dash-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .dash-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--sky-200);
+    }
+    .dash-card:hover::before { opacity: 1; }
+    .dash-card-icon {
+      width: 56px; height: 56px;
+      border-radius: var(--radius-md);
+      display: grid; place-items: center;
+      font-size: 1.8rem;
+      margin-bottom: var(--space-md);
+      background: var(--accent-soft);
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+    .dash-card:nth-child(2) .dash-card-icon { background: rgba(244, 114, 182, 0.1); box-shadow: 0 4px 12px rgba(244, 114, 182, 0.15); }
+    .dash-card:nth-child(3) .dash-card-icon { background: rgba(251, 191, 36, 0.1); box-shadow: 0 4px 12px rgba(251, 191, 36, 0.15); }
+    .dash-card:nth-child(4) .dash-card-icon { background: rgba(16, 185, 129, 0.1); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15); }
+    .dash-card:nth-child(5) .dash-card-icon { background: rgba(139, 92, 246, 0.1); box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15); }
+    .dash-card:nth-child(6) .dash-card-icon { background: rgba(249, 115, 22, 0.1); box-shadow: 0 4px 12px rgba(249, 115, 22, 0.15); }
+    .dash-card-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+    .dash-card-desc {
+      font-size: 0.9rem; color: var(--text-body);
+      flex: 1;
+      margin-bottom: var(--space-md);
+    }
+    .dash-card-tag {
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-full);
+      width: fit-content;
+      margin-bottom: var(--space-md);
+    }
+    .dash-card-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-weight: 700; color: var(--accent);
+      transition: gap 0.2s;
+    }
+    .dash-card:hover .dash-card-link { gap: 0.7rem; }
+
+    /* ===== CONTENT ARTICLES ===== */
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+    }
+    .content-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-lg);
+      transition: all 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .content-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--sky-200);
+    }
+    .content-card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: var(--space-md);
+    }
+    .content-card-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem; font-weight: 700;
+      color: var(--accent-soft);
+      line-height: 1;
+    }
+    .content-card-count {
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.3rem 0.8rem;
+      border-radius: var(--radius-full);
+    }
+    .content-card-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem; font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .content-card-desc {
+      font-size: 0.9rem; color: var(--text-body);
+      margin-bottom: var(--space-md);
+    }
+    .content-articles-list {
+      list-style: none;
+      border-top: 1px solid var(--border-soft);
+      padding-top: var(--space-md);
+      margin-top: auto;
+    }
+    .content-articles-list li {
+      margin-bottom: 0.5rem;
+    }
+    .content-articles-list a {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.5rem 0.7rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      color: var(--text-body);
+      transition: all 0.2s;
+    }
+    .content-articles-list a:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    .content-articles-list .article-date {
+      font-size: 0.75rem; color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .content-articles-empty {
+      font-size: 0.85rem; color: var(--text-muted);
+      padding: 0.5rem 0;
+      border-top: 1px solid var(--border-soft);
+      margin-top: auto;
+    }
+    .content-more {
+      font-size: 0.8rem; font-weight: 700;
+      color: var(--accent);
+      margin-top: 0.5rem;
+      display: inline-flex; align-items: center; gap: 0.3rem;
+    }
+
+    /* ===== GITHUB CARDS ===== */
+    .gh-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-md);
+    }
+    .gh-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .gh-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--sky-200);
+    }
+    .gh-card-top {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: var(--space-sm);
+    }
+    .gh-card-name {
+      font-family: var(--font-display);
+      font-weight: 700; font-size: 1rem;
+      color: var(--text-main);
+    }
+    .gh-card-star {
+      font-size: 0.8rem; font-weight: 700;
+      color: var(--accent-3);
+      background: var(--yellow-100);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-full);
+    }
+    .gh-card-desc {
+      font-size: 0.85rem; color: var(--text-body);
+      flex: 1; margin-bottom: var(--space-md);
+    }
+    .gh-card-lang {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: var(--space-md);
+    }
+    .gh-lang-dot::before {
+      content: '';
+      display: inline-block; width: 8px; height: 8px;
+      border-radius: 50%; background: var(--accent);
+      margin-right: 0.4rem;
+    }
+    .gh-card-cta {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-weight: 700; color: var(--accent);
+      font-size: 0.85rem;
+      transition: gap 0.2s;
+    }
+    .gh-card:hover .gh-card-cta { gap: 0.7rem; }
+
+    /* ===== CYBERFLOW ===== */
+    .cyberflow-section { background: linear-gradient(180deg, #fff 0%, var(--bg-soft) 100%); }
+    .cyberflow-inner {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: var(--space-2xl);
       align-items: center;
     }
-
-    .nav-logo {
-      font-family: var(--font-pixel);
-      font-size: 0.8rem;
-      line-height: 1.8;
-      letter-spacing: 0.05em;
+    @media (max-width: 900px) {
+      .cyberflow-inner { grid-template-columns: 1fr; text-align: center; }
+      .cyberflow-inner .cf-features { text-align: left; }
     }
-
-    .nav-logo span { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
-
-    .nav-links {
-      display: flex;
-      gap: 2em;
-      list-style: none;
+    .cf-visual {
+      position: relative;
+      display: flex; justify-content: center;
     }
-
-    .nav-links a {
-      font-size: 0.6rem;
-      font-family: var(--font-pixel);
-      line-height: 1.8;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      transition: all 0.15s;
-      border: 1px solid transparent;
-      padding: 0.3em 0.6em;
+    .cf-mascot {
+      width: 280px; height: 280px;
+      background: linear-gradient(135deg, var(--sky-100), #fff);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 8rem;
+      box-shadow: var(--shadow-xl);
+      border: 8px solid #fff;
+      animation: mascotBounce 3s ease-in-out infinite;
     }
+    @keyframes mascotBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    .cf-orbit {
+      position: absolute;
+      width: 360px; height: 360px;
+      border: 2px dashed var(--sky-200);
+      border-radius: 50%;
+      animation: orbit 20s linear infinite;
+    }
+    .cf-orbit-dot {
+      position: absolute;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: var(--shadow-md);
+      display: grid; place-items: center;
+      font-size: 1.1rem;
+    }
+    .cf-orbit-dot:nth-child(1) { top: -18px; left: 50%; transform: translateX(-50%); }
+    .cf-orbit-dot:nth-child(2) { bottom: 40px; left: -18px; }
+    .cf-orbit-dot:nth-child(3) { bottom: 40px; right: -18px; }
+    @keyframes orbit { to { transform: rotate(360deg); } }
+    .cf-features { list-style: none; display: flex; flex-direction: column; gap: var(--space-md); }
+    .cf-feature {
+      display: flex; gap: var(--space-md);
+      background: #fff;
+      padding: var(--space-lg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .cf-feature:hover { transform: translateX(8px); box-shadow: var(--shadow-md); }
+    .cf-feature-icon {
+      width: 50px; height: 50px; flex-shrink: 0;
+      border-radius: var(--radius-md);
+      background: var(--accent-soft);
+      display: grid; place-items: center;
+      font-size: 1.5rem;
+    }
+    .cf-feature-title {
+      font-family: var(--font-display);
+      font-weight: 700; font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    .cf-feature-desc { font-size: 0.9rem; color: var(--text-body); }
 
-    .nav-links a:hover { 
-      color: var(--accent); 
-      border-color: var(--accent);
-      box-shadow: 2px 2px 0px var(--accent-dim);
-      transform: translate(-2px, -2px);
+    /* ===== VIDEOS ===== */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-lg);
+    }
+    .video-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .video-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--sky-200);
+    }
+    .video-thumb {
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--sky-100), var(--pink-100));
+      display: grid; place-items: center;
+      position: relative;
+    }
+    .video-thumb-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.95);
+      display: grid; place-items: center;
+      font-size: 1.5rem;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s;
+    }
+    .video-card:hover .video-thumb-icon { transform: scale(1.1); }
+    .video-info { padding: var(--space-md); }
+    .video-title { font-family: var(--font-display); font-weight: 700; font-size: 1rem; margin-bottom: 0.35rem; }
+    .video-meta { font-size: 0.8rem; color: var(--text-muted); }
+    .video-more {
+      text-align: center; margin-top: var(--space-xl);
+      font-size: 0.95rem; font-weight: 600;
+    }
+    .video-more a { color: var(--accent); }
+    .video-more a:hover { text-decoration: underline; }
+
+    /* ===== CONTACT ===== */
+    .contact-section {
+      background: #fff;
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      padding: var(--space-3xl) 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+    .contact-section::before {
+      content: '📬';
+      font-size: 3rem;
+      display: block;
+      margin-bottom: var(--space-md);
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .contact-note {
+      color: var(--text-body);
+      max-width: 460px;
+      margin: 0 auto var(--space-lg);
+    }
+    .contact-email {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--accent);
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background: var(--accent-soft);
+      border-radius: var(--radius-full);
+      transition: all 0.3s;
+    }
+    .contact-email:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: scale(1.03);
     }
 
     /* ===== FOOTER ===== */
     .footer {
-      border-top: 2px solid var(--border);
-      padding: var(--space-lg) 0;
+      background: #fff;
+      border-top: 1px solid var(--border);
+      padding: var(--space-xl) 0;
       text-align: center;
     }
+    .footer-text { color: var(--text-muted); font-size: 0.85rem; }
+    .footer-text a { color: var(--accent); font-weight: 600; }
+    .footer-text a:hover { text-decoration: underline; }
 
-    .footer-text {
-      font-size: 0.6rem;
-      color: var(--text-muted);
-      font-family: var(--font-pixel);
-      line-height: 1.8;
-      letter-spacing: 0.05em;
-    }
-
-    /* ===== SCROLL REVEAL ===== */
+    /* ===== REVEAL ANIMATION ===== */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+      transform: translateY(24px);
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ===== SCROLL PROGRESS ===== */
     .scroll-progress {
-      position: fixed;
-      top: 0; left: 0;
+      position: fixed; top: 0; left: 0;
       height: 3px;
-      background: var(--accent);
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
       z-index: 1000;
-      box-shadow: 0 0 10px var(--accent-glow);
       transition: width 0.1s;
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hero-actions { flex-direction: column; }
-      .hero-actions .btn { text-align: center; justify-content: center; }
-      .hero-title { font-size: clamp(3rem, 12vw, 5rem); }
+    /* ===== ADMIN BADGE ===== */
+    .admin-badge {
+      position: fixed; bottom: 20px; right: 20px;
+      z-index: 50;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem; font-weight: 600;
+      color: var(--text-muted);
+      box-shadow: var(--shadow-md);
+      transition: all 0.2s;
+    }
+    .admin-badge:hover {
+      color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
     }
   </style>
 </head>
 <body>
-
-  <!-- PIXEL GRID BACKGROUND -->
-  <div class="pixel-grid"></div>
   <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- NAV -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+
   <nav class="nav" id="nav">
     <div class="container nav-inner">
-      <a href="#" class="nav-logo" id="navLogo"></a>
-      <ul class="nav-links" id="navLinks"></ul>
+      <a href="#" class="nav-logo">
+        <span class="ox">🐂</span>
+        <span>crazy<span style="color:var(--accent);">ox</span>.ai</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#tools"><span class="icon">🧰</span><span>工具</span></a></li>
+        <li><a href="#content"><span class="icon">📝</span><span>内容</span></a></li>
+        <li><a href="#github"><span class="icon">🐙</span><span>GitHub</span></a></li>
+        <li><a href="#cyberflow"><span class="icon">🚀</span><span>项目</span></a></li>
+        <li><a href="#videos"><span class="icon">🎬</span><span>视频</span></a></li>
+        <li><a href="#contact"><span class="icon">✉️</span><span>联系</span></a></li>
+      </ul>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero" id="heroSection"></section>
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <div class="hero-badge" id="heroTag">AI · 投研 · 自动化叙事</div>
+        <h1 class="hero-title" id="heroTitle">
+          在噪声中<br/>
+          找到<span class="highlight">信号</span> <span class="emoji-wand">🪄</span>
+        </h1>
+        <p class="hero-sub" id="heroSubtitle">
+          AI板块价值迁徙、半导体杠杆实时监控、CyberFlow自动化IP运营——用工具放大视角，用叙事传递认知。
+        </p>
+        <div class="hero-actions" id="heroButtons">
+          <a href="#tools" class="btn btn-primary">探索工具 🎯</a>
+          <a href="https://github.com/AmberQian" class="btn btn-ghost" target="_blank">GitHub 🐙</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <div class="hero-card-avatar">🐂</div>
+            <div>
+              <div class="hero-card-title">CrazyOx.ai</div>
+              <div class="hero-card-sub">AI · 投研 · 自动化</div>
+            </div>
+          </div>
+          <div class="hero-chart-row">
+            <div class="hero-chart-bar"></div>
+            <div class="hero-chart-bar"></div>
+            <div class="hero-chart-bar"></div>
+            <div class="hero-chart-bar"></div>
+            <div class="hero-chart-bar"></div>
+            <div class="hero-chart-bar"></div>
+          </div>
+          <div class="hero-card-tags">
+            <span class="hero-card-tag">📊 实时仪表盘</span>
+            <span class="hero-card-tag">🤖 AI 运营</span>
+            <span class="hero-card-tag">📈 投研</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- TOOLS / DASHBOARDS (dynamic) -->
-  <section class="section" id="tools"></section>
+  <div class="ticker-wrap">
+    <div class="ticker" id="ticker"></div>
+  </div>
 
-  <div class="topo-line"></div>
+  <section class="section" id="tools">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">🧰 Tools & Dashboards</div>
+        <h2 class="section-title">集成工具与<span class="accent-text">实时仪表盘</span></h2>
+        <p class="section-desc">将投研框架蒸馏为可交互的仪表盘，让复杂的市场信号变得可读、可监控、可行动。</p>
+      </div>
+      <div class="dash-grid" id="dashGrid"></div>
+    </div>
+  </section>
 
-  <!-- CONTENT COLLECTIONS (dynamic) -->
-  <section class="section" id="content"></section>
+  <section class="section" id="content" style="background: linear-gradient(180deg, var(--bg) 0%, #fff 50%, var(--bg) 100%);">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">📝 Long-form Collections</div>
+        <h2 class="section-title">长文<span class="accent-text">分类合集</span></h2>
+        <p class="section-desc">持续输出的深度内容，按主题分类整理。在输出中被动成长，在认知迭代中接近独立判断。</p>
+      </div>
+      <div class="content-grid" id="contentGrid"></div>
+    </div>
+  </section>
 
-  <div class="topo-line"></div>
+  <section class="section" id="github">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">🐙 Open Source</div>
+        <h2 class="section-title">GitHub <span class="accent-text">工具仓库</span></h2>
+        <p class="section-desc">所有仪表盘与工具的源代码，持续迭代中。欢迎 Star、Fork、提 Issue。</p>
+      </div>
+      <div class="gh-grid" id="ghGrid"></div>
+      <p class="reveal" style="text-align:center; margin-top:var(--space-xl);">
+        <a href="https://github.com/AmberQian" class="btn btn-ghost" target="_blank">查看全部仓库 🐙</a>
+      </p>
+    </div>
+  </section>
 
-  <!-- GITHUB REPOS (dynamic) -->
-  <section class="section" id="github"></section>
+  <section class="section cyberflow-section" id="cyberflow">
+    <div class="container">
+      <div class="cyberflow-inner">
+        <div class="cf-visual reveal">
+          <div class="cf-orbit">
+            <div class="cf-orbit-dot">🤖</div>
+            <div class="cf-orbit-dot">✍️</div>
+            <div class="cf-orbit-dot">🧠</div>
+          </div>
+          <div class="cf-mascot">🐂</div>
+        </div>
+        <div>
+          <div class="section-label reveal">🚀 Main Project</div>
+          <h2 class="section-title reveal" id="cyberflowTitle">CyberFlow<span class="accent-text">.info</span></h2>
+          <p class="section-desc reveal" id="cyberflowDesc">
+            AI自动化IP运营平台。除了自动回复，最大的亮点是深度内容SOP生产能力和投研能力——蒸馏成Skills，让每个0基础的小白具备长文输出能力，在输出过程中被动成长，持续迭代认知，最终具备独立判断能力，成长为真正的KOL。
+          </p>
+          <ul class="cf-features" id="cfFeatures"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div class="topo-line"></div>
+  <section class="section" id="videos">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">🎬 Video Tutorials</div>
+        <h2 class="section-title">YouTube <span class="accent-text">免费科普</span></h2>
+        <p class="section-desc">15个视频，用AI运营X账号的完整免费科普。从指纹浏览器、静态IP、IP纯净度、影子封禁到CyberFlow工作流设置——覆盖从0到1的全流程。</p>
+      </div>
+      <div class="video-grid" id="videoGrid"></div>
+      <p class="video-more reveal" id="videoMore">
+        <a href="https://youtube.com/@crazyox" target="_blank">……以及另外 11 个视频，完整覆盖 AI 自动化运营 X 账号的全流程 →</a>
+      </p>
+    </div>
+  </section>
 
-  <!-- CYBERFLOW (dynamic) -->
-  <section class="section cyberflow" id="cyberflow"></section>
+  <section class="contact-section" id="contact">
+    <div class="container reveal">
+      <div class="section-label">✉️ Get In Touch</div>
+      <h2 class="section-title">合作交流</h2>
+      <p class="contact-note" id="contactNote">DM 已屏蔽，请发邮件，AI 会帮我过滤汇总。</p>
+      <a href="mailto:crazyox@agent.qq.com" class="contact-email" id="contactEmail">crazyox@agent.qq.com</a>
+    </div>
+  </section>
 
-  <div class="topo-line"></div>
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text" id="footerText">
+        © 2026 crazyox.ai · 接受所有失去与获取 · <a href="https://github.com/AmberQian" target="_blank">GitHub</a>
+      </p>
+    </div>
+  </footer>
 
-  <!-- YOUTUBE VIDEOS (dynamic) -->
-  <section class="section" id="videos"></section>
-
-  <div class="topo-line"></div>
-
-  <!-- CONTACT (dynamic) -->
-  <section class="contact-section" id="contact"></section>
-
-  <!-- FOOTER -->
-  <footer class="footer" id="siteFooter"></footer>
+  <a href="admin.html" class="admin-badge">⚙️ 管理后台</a>
 
   <script>
-    /* ===== CONTENT LOADER ===== */
-    let C = null;
-    const CONTENT_URL = 'content.json';
+    /* ===== UTILS ===== */
+    function esc(s) {
+      return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
 
+    /* ===== LOAD CONTENT ===== */
+    let content = {};
     async function loadContent() {
       try {
-        const res = await fetch(CONTENT_URL);
-        if (!res.ok) throw new Error('Failed to load content.json');
-        C = await res.json();
-        renderAll();
-        initEffects();
-      } catch(e) {
-        console.error('Content load error:', e);
-        document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:monospace;font-size:0.8rem;color:var(--accent);">◆ LOADING CONTENT ◆</div>';
-        setTimeout(loadContent, 3000);
+        const res = await fetch('content.json?v=' + Date.now());
+        if (!res.ok) throw new Error('fetch failed');
+        content = await res.json();
+      } catch (e) {
+        // fallback minimal content if JSON fails
+        content = {
+          site: { title: 'CrazyOx.ai', description: '...' },
+          hero: { tag: 'AI · 投研 · 自动化叙事', titleLine1: '在噪声中', titleLine2: '找到信号', titleHighlight: '信号', subtitle: '...', buttons: [] },
+          ticker: { items: [] },
+          dashboards: { label: '', title: '', titleHighlight: '', description: '', items: [] },
+          articles: { label: '', title: '', titleHighlight: '', description: '', items: [] },
+          github: { username: 'AmberQian', label: '', title: '', titleHighlight: '', description: '', ctaText: '', ctaLink: '', items: [] },
+          cyberflow: { label: '', title: 'CyberFlow', titleHighlight: '.info', description: '', visualText: '', features: [] },
+          videos: { label: '', title: '', titleHighlight: '', description: '', channel: 'https://youtube.com/@crazyox', moreText: '', items: [] },
+          contact: { label: '', title: '', note: '', email: 'crazyox@agent.qq.com' },
+          footer: { text: '© 2026 crazyox.ai · 接受所有失去与获取 · GitHub' },
+          nav: { links: [] }
+        };
       }
+      renderAll();
+      fetchStars();
+      initScrollReveal();
     }
 
-    function esc(s) { const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
-
-    /* ===== RENDERERS ===== */
-    function renderAll() {
-      renderNav();
-      renderHero();
-      renderSection('tools', 'dashboards', renderDashboards);
-      renderSection('content', 'articles', renderArticles);
-      renderSection('github', 'github', renderGithub);
-      renderCyberflow();
-      renderSection('videos', 'videos', renderVideos);
-      renderContact();
-      renderFooter();
-      document.title = C.site.title;
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) metaDesc.content = C.site.description;
-    }
-
-    function sectionHTML(data) {
-      return `<div class="container">
-        <div class="section-label reveal">${esc(data.label)}</div>
-        <h2 class="section-title reveal">${esc(data.title)}${data.titleHighlight ? `<em class="accent">${esc(data.titleHighlight)}</em>` : ''}</h2>
-        <p class="section-desc reveal">${esc(data.description)}</p>`;
-    }
-
-    function renderSection(id, key, renderItems) {
-      const section = document.getElementById(id);
-      if (!section || !C[key]) return;
-      const data = C[key];
-      section.innerHTML = sectionHTML(data) + renderItems(data) + '</div>';
-    }
-
-    function renderNav() {
-      const nav = C.nav;
-      document.getElementById('navLogo').innerHTML = `crazy<span>${esc(nav.logoHighlight)}</span>.ai`;
-      document.getElementById('navLinks').innerHTML = nav.links.map(l =>
-        `<li><a href="${esc(l.href)}">${esc(l.label)}</a></li>`
-      ).join('');
-    }
-
+    /* ===== RENDER HERO ===== */
     function renderHero() {
-      const h = C.hero;
-      const buttons = h.buttons.map(b => {
-        const attrs = b.external ? ' target="_blank" rel="noopener"' : '';
-        return `<a href="${esc(b.href)}" class="btn ${esc(b.class)}"${attrs}>${esc(b.text)}</a>`;
-      }).join('');
-
-      const tickerItems = C.ticker.items;
-      const tickerHTML = tickerItems.map(t => `<span>${esc(t)}</span>`).join('');
-      // Duplicate for seamless loop
-      const tickerDouble = tickerHTML + tickerHTML;
-
-      document.getElementById('heroSection').innerHTML = `
-        <div class="hero-glitch"></div>
-        <div class="hero-inner container">
-          <div class="hero-tag">${esc(h.tag)}</div>
-          <h1 class="hero-title">${esc(h.titleLine1)}<br/>找到<em>${esc(h.titleHighlight)}</em></h1>
-          <p class="hero-sub">${esc(h.subtitle)}</p>
-          <div class="hero-actions">${buttons}</div>
-        </div>
-        <div class="ticker-wrap">
-          <div class="ticker" id="ticker">${tickerDouble}</div>
-        </div>
-      `;
-    }
-
-    function renderDashboards(data) {
-      return `<div class="dash-grid">${data.items.map(d => `
-        <a href="${esc(d.link)}" class="dash-card reveal" target="_blank" rel="noopener">
-          <span class="dash-card-icon">${d.icon}</span>
-          <h3 class="dash-card-title">${esc(d.title)}</h3>
-          <p class="dash-card-desc">${esc(d.description)}</p>
-          <span class="dash-card-tag">${esc(d.tag)}</span>
-          <span class="dash-card-link">${esc(d.linkText)}</span>
-        </a>
-      `).join('')}</div>`;
-    }
-
-    function renderArticles(data) {
-      return `<div class="content-grid">${data.items.map(a => `
-        <div class="content-card reveal">
-          <div class="content-card-num">${esc(a.number)}</div>
-          <h3 class="content-card-title">${esc(a.title)}</h3>
-          <p class="content-card-desc">${esc(a.description)}</p>
-          <div class="content-articles">
-            ${renderArticleList(a.articles || [])}
-          </div>
-          <div class="content-card-count">${esc(a.count)}</div>
-        </div>
-      `).join('')}</div>`;
-    }
-
-    function renderArticleList(articles) {
-      if (!articles.length) {
-        return '<div class="content-article-empty">暂无文章，可在后台添加 →</div>';
+      const h = content.hero;
+      if (h.tag) document.getElementById('heroTag').textContent = h.tag;
+      const titleEl = document.getElementById('heroTitle');
+      if (h.titleLine1 && h.titleLine2) {
+        const hl = h.titleHighlight || '';
+        titleEl.innerHTML = `${esc(h.titleLine1)}<br/>${esc(h.titleLine2.replace(hl, ''))}<span class="highlight">${esc(hl)}</span> <span class="emoji-wand">🪄</span>`;
       }
-      const MAX = 3;
-      const visible = articles.slice(0, MAX);
-      const more = articles.length > MAX ? articles.length - MAX : 0;
-      const list = visible.map(art => `
-        <a href="${esc(art.url)}" class="content-article-item" target="_blank" rel="noopener">
-          <span class="content-article-date">${esc(art.date || '')}</span>
-          <span class="content-article-title">${esc(art.title)}</span>
+      if (h.subtitle) document.getElementById('heroSubtitle').textContent = h.subtitle;
+      const btnWrap = document.getElementById('heroButtons');
+      if (h.buttons && h.buttons.length) {
+        btnWrap.innerHTML = h.buttons.map(b => {
+          const cls = b.class === 'btn-primary' ? 'btn-primary' : 'btn-ghost';
+          const ico = cls === 'btn-primary' ? '🎯' : '🐙';
+          return `<a href="${esc(b.href)}" class="btn ${cls}"${b.external ? ' target="_blank"' : ''}>${esc(b.text)} ${ico}</a>`;
+        }).join('');
+      }
+    }
+
+    /* ===== RENDER TICKER ===== */
+    function renderTicker() {
+      const items = (content.ticker && content.ticker.items) || [];
+      const doubled = items.concat(items);
+      document.getElementById('ticker').innerHTML = doubled.map(i => `<span>${esc(i)}</span>`).join('');
+    }
+
+    /* ===== RENDER DASHBOARDS ===== */
+    function renderDashboards() {
+      const d = content.dashboards;
+      const items = (d && d.items) || [];
+      document.getElementById('dashGrid').innerHTML = items.map(item => `
+        <a href="${esc(item.link)}" class="dash-card reveal" target="_blank">
+          <div class="dash-card-icon">${esc(item.icon)}</div>
+          <span class="dash-card-tag">${esc(item.tag)}</span>
+          <h3 class="dash-card-title">${esc(item.title)}</h3>
+          <p class="dash-card-desc">${esc(item.description)}</p>
+          <span class="dash-card-link">${esc(item.linkText)} →</span>
         </a>
       `).join('');
-      const moreHtml = more ? `<span class="content-article-more">+ ${more} 篇更多文章</span>` : '';
-      return list + moreHtml;
     }
 
-    function renderGithub(data) {
-      const items = data.items.map(r => `
-        <div class="gh-card reveal" data-repo="${esc(r.repo)}">
-          <div class="gh-card-top">
-            <span class="gh-card-name">${esc(r.name)}</span>
-            <span class="gh-card-star">&#x2605; --</span>
+    /* ===== RENDER ARTICLES ===== */
+    function renderArticles() {
+      const a = content.articles;
+      const items = (a && a.items) || [];
+      document.getElementById('contentGrid').innerHTML = items.map(item => {
+        const articles = (item.articles || []).slice(0, 3);
+        const more = (item.articles || []).length - 3;
+        let listHtml = '';
+        if (articles.length) {
+          listHtml = `<ul class="content-articles-list">
+            ${articles.map(art => `
+              <li><a href="${esc(art.url)}" target="_blank">
+                <span>${esc(art.title)}</span>
+                <span class="article-date">${esc(art.date || '')}</span>
+              </a></li>
+            `).join('')}
+            ${more > 0 ? `<li class="content-more">+ ${more} 篇更多文章 ✨</li>` : ''}
+          </ul>`;
+        } else {
+          listHtml = `<div class="content-articles-empty">暂无文章，可在后台添加 →</div>`;
+        }
+        return `
+          <div class="content-card reveal">
+            <div class="content-card-header">
+              <span class="content-card-num">${esc(item.number)}</span>
+              <span class="content-card-count">${esc(item.count)}</span>
+            </div>
+            <h3 class="content-card-title">${esc(item.title)}</h3>
+            <p class="content-card-desc">${esc(item.description)}</p>
+            ${listHtml}
           </div>
-          <p class="gh-card-desc">${esc(r.description)}</p>
-          <div class="gh-card-lang"><span class="gh-lang-dot">${esc(r.lang)}</span></div>
-          <a href="https://github.com/${esc(data.username)}/${esc(r.repo)}" class="gh-card-cta" target="_blank" rel="noopener">查看源码 →</a>
+        `;
+      }).join('');
+    }
+
+    /* ===== RENDER GITHUB ===== */
+    function renderGitHub() {
+      const g = content.github;
+      const items = (g && g.items) || [];
+      document.getElementById('ghGrid').innerHTML = items.map(item => `
+        <div class="gh-card reveal" data-repo="${esc(item.repo)}">
+          <div class="gh-card-top">
+            <span class="gh-card-name">${esc(item.name)}</span>
+            <span class="gh-card-star">★ --</span>
+          </div>
+          <p class="gh-card-desc">${esc(item.description)}</p>
+          <div class="gh-card-lang"><span class="gh-lang-dot">${esc(item.lang)}</span></div>
+          <a href="https://github.com/${esc(g.username)}/${esc(item.repo)}" class="gh-card-cta" target="_blank">查看源码 →</a>
         </div>
       `).join('');
-
-      return `<div class="gh-grid" id="gh-grid">${items}</div>
-        <p style="text-align:center; margin-top:var(--space-lg);">
-          <a href="${esc(data.ctaLink)}" class="btn btn-ghost" target="_blank" rel="noopener">${esc(data.ctaText)}</a>
-        </p>`;
     }
 
-    function renderCyberflow() {
-      const cf = C.cyberflow;
-      const features = cf.features.map(f => `
+    async function fetchStars() {
+      const g = content.github;
+      if (!g || !g.items) return;
+      for (const item of g.items) {
+        try {
+          const res = await fetch(`https://api.github.com/repos/${esc(g.username)}/${esc(item.repo)}`);
+          if (!res.ok) continue;
+          const data = await res.json();
+          const card = document.querySelector(`[data-repo="${esc(item.repo)}"]`);
+          if (card && data.stargazers_count != null) {
+            const starEl = card.querySelector('.gh-card-star');
+            if (starEl) starEl.innerHTML = `★ ${data.stargazers_count}`;
+          }
+        } catch (e) { /* ignore */ }
+      }
+    }
+
+    /* ===== RENDER CYBERFLOW ===== */
+    function renderCyberFlow() {
+      const c = content.cyberflow;
+      if (!c) return;
+      if (c.title) document.getElementById('cyberflowTitle').innerHTML = esc(c.title) + `<span class="accent-text">${esc(c.titleHighlight)}</span>`;
+      if (c.description) document.getElementById('cyberflowDesc').innerHTML = esc(c.description).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      const features = (c.features || []);
+      document.getElementById('cfFeatures').innerHTML = features.map((f, i) => `
         <li class="cf-feature reveal">
-          <div class="cf-feature-icon">${f.icon}</div>
+          <div class="cf-feature-icon">${esc(f.icon)}</div>
           <div>
             <div class="cf-feature-title">${esc(f.title)}</div>
             <div class="cf-feature-desc">${esc(f.description)}</div>
           </div>
         </li>
       `).join('');
-
-      document.getElementById('cyberflow').innerHTML = `
-        <div class="container">
-          <div class="cyberflow-inner">
-            <div class="cf-visual reveal"></div>
-            <div>
-              <div class="section-label reveal">${esc(cf.label)}</div>
-              <h2 class="section-title reveal">${esc(cf.title)}<em class="accent">${esc(cf.titleHighlight)}</em></h2>
-              <p class="section-desc reveal">${esc(cf.description)}</p>
-              <ul class="cf-features">${features}</ul>
-            </div>
-          </div>
-        </div>
-      `;
     }
 
-    function renderVideos(data) {
-      return `<div class="video-grid">${data.items.map(v => `
-        <a href="${esc(v.link)}" class="video-card reveal" target="_blank" rel="noopener">
-          <div class="video-thumb"><span class="video-thumb-icon">[▶]</span></div>
+    /* ===== RENDER VIDEOS ===== */
+    function renderVideos() {
+      const v = content.videos;
+      const items = (v && v.items) || [];
+      document.getElementById('videoGrid').innerHTML = items.map(item => `
+        <a href="${esc(item.link)}" class="video-card reveal" target="_blank">
+          <div class="video-thumb">
+            <div class="video-thumb-icon">▶️</div>
+          </div>
           <div class="video-info">
-            <div class="video-title">${esc(v.title)}</div>
-            <div class="video-meta">YouTube · ${esc(v.duration)} · 免费</div>
+            <div class="video-title">${esc(item.title)}</div>
+            <div class="video-meta">${esc(item.meta)}</div>
           </div>
         </a>
-      `).join('')}</div>
-      <p style="text-align:center; margin-top:var(--space-lg); color:var(--text-muted); font-size:0.85rem;">
-        <a href="${esc(data.moreLink)}" target="_blank" rel="noopener" style="color:var(--text-muted);">${esc(data.moreText)}</a>
-      </p>`;
+      `).join('');
+      if (v.moreText) {
+        document.getElementById('videoMore').innerHTML = `<a href="${esc(v.channel)}" target="_blank">${esc(v.moreText)}</a>`;
+      }
     }
 
-    function renderContact() {
-      const ct = C.contact;
-      document.getElementById('contact').innerHTML = `
-        <div class="container reveal">
-          <div class="section-label">${esc(ct.label)}</div>
-          <h2 class="section-title">${esc(ct.title)}</h2>
-          <p class="contact-note">${esc(ct.note)}</p>
-          <a href="mailto:${esc(ct.email)}" class="contact-email">${esc(ct.email)}</a>
-        </div>
-      `;
+    /* ===== RENDER CONTACT & FOOTER ===== */
+    function renderContactFooter() {
+      const c = content.contact;
+      if (c.note) document.getElementById('contactNote').textContent = c.note;
+      if (c.email) {
+        document.getElementById('contactEmail').textContent = c.email;
+        document.getElementById('contactEmail').href = 'mailto:' + c.email;
+      }
+      const f = content.footer;
+      if (f && f.text) document.getElementById('footerText').innerHTML = esc(f.text).replace(/(https:\/\/github\.com\/[^\s]+)/, '<a href="$1" target="_blank">GitHub</a>');
     }
 
-    function renderFooter() {
-      const f = C.footer;
-      document.getElementById('siteFooter').innerHTML = `
-        <div class="container">
-          <p class="footer-text">${f.text} · <a href="${esc(f.githubLink)}" target="_blank" rel="noopener" style="color:var(--text-muted);">GitHub</a></p>
-        </div>
-      `;
+    /* ===== NAV ===== */
+    function renderNav() {
+      const nav = content.nav;
+      if (nav && nav.links && nav.links.length) {
+        document.getElementById('navLinks').innerHTML = nav.links.map(l => `
+          <li><a href="${esc(l.href)}"><span class="icon">${esc(l.icon)}</span><span>${esc(l.label)}</span></a></li>
+        `).join('');
+      }
     }
 
-    /* ===== EFFECTS (after DOM is ready) ===== */
-    function initEffects() {
-      /* Nav scroll */
-      const nav = document.getElementById('nav');
-      window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 60);
-      });
+    /* ===== RENDER ALL ===== */
+    function renderAll() {
+      renderNav();
+      renderHero();
+      renderTicker();
+      renderDashboards();
+      renderArticles();
+      renderGitHub();
+      renderCyberFlow();
+      renderVideos();
+      renderContactFooter();
+      document.title = content.site.title;
+    }
 
-      /* Scroll progress */
-      const scrollProgress = document.getElementById('scrollProgress');
-      window.addEventListener('scroll', () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = (scrollTop / docHeight) * 100;
-        scrollProgress.style.width = Math.min(progress, 100) + '%';
-      });
+    /* ===== SCROLL PROGRESS ===== */
+    const scrollProgress = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', () => {
+      const top = window.scrollY;
+      const doc = document.documentElement.scrollHeight - window.innerHeight;
+      scrollProgress.style.width = (top / doc * 100) + '%';
+      document.getElementById('nav').classList.toggle('scrolled', top > 40);
+    });
 
-      /* Scroll reveal */
+    /* ===== SCROLL REVEAL ===== */
+    function initScrollReveal() {
+      const reveals = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
-            setTimeout(() => entry.target.classList.add('visible'), i * 80);
+            entry.target.classList.add('visible');
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.1 });
-
-      /* Observe after a short delay for DOM to settle */
-      setTimeout(() => {
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-      }, 100);
-
-      /* Ticker pause on hover */
-      const ticker = document.getElementById('ticker');
-      if (ticker) {
-        ticker.addEventListener('mouseenter', () => ticker.style.animationPlayState = 'paused');
-        ticker.addEventListener('mouseleave', () => ticker.style.animationPlayState = 'running');
-      }
-
-      /* GitHub API — fetch real star counts */
-      (async () => {
-        const cards = document.querySelectorAll('[data-repo]');
-        for (const card of cards) {
-          const repo = card.dataset.repo;
-          try {
-            const res = await fetch(`https://api.github.com/repos/${esc(C.github.username)}/${repo}`);
-            if (!res.ok) continue;
-            const data = await res.json();
-            if (data.stargazers_count !== undefined) {
-              const starEl = card.querySelector('.gh-card-star');
-              if (starEl) starEl.innerHTML = `&#x2605; ${data.stargazers_count}`;
-            }
-          } catch(e) { /* fallback to -- */ }
-        }
-      })();
-
-      /* Typing effect for hero title */
-      const heroTitle = document.querySelector('.hero-title');
-      if (heroTitle) {
-        const originalHTML = heroTitle.innerHTML;
-        const text = heroTitle.textContent || '';
-        heroTitle.innerHTML = '';
-        let i = 0;
-        const typeInterval = setInterval(() => {
-          if (i < text.length) {
-            heroTitle.textContent += text.charAt(i);
-            i++;
-          } else {
-            clearInterval(typeInterval);
-            heroTitle.innerHTML = originalHTML;
-          }
-        }, 50);
-      }
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(el => observer.observe(el));
     }
 
-    /* Boot */
     loadContent();
   </script>
 </body>

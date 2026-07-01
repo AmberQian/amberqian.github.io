@@ -3,105 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>crazyox.ai — 内容管理后台</title>
+  <title>crazyox.ai — 内容管理后台 🐂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0a0a0a;
-      --bg2: #111;
-      --bg3: #1a1a1a;
-      --border: #2a2a2a;
-      --text: #ccc;
-      --text2: #888;
-      --accent: #0ABAB5;
-      --accent2: #0D9488;
+      --bg: #f0f9ff;
+      --bg2: #ffffff;
+      --bg3: #f8fafc;
+      --border: #e2e8f0;
+      --border2: #cbd5e1;
+      --text: #1e293b;
+      --text2: #64748b;
+      --accent: #0ea5e9;
+      --accent2: #0284c7;
+      --accent-soft: rgba(14, 165, 233, 0.08);
       --red: #ef4444;
-      --green: #22c55e;
-      --font: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-      --radius: 0;
+      --green: #10b981;
+      --pink: #f472b6;
+      --yellow: #fbbf24;
+      --font: 'Nunito', 'Quicksand', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif;
+      --radius: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 2px 8px rgba(30, 41, 59, 0.06);
+      --shadow-md: 0 4px 16px rgba(30, 41, 59, 0.08);
+      --shadow-lg: 0 12px 32px rgba(30, 41, 59, 0.1);
     }
     *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
-    body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 13px; line-height: 1.6; }
-    a { color: var(--accent); text-decoration: none; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    a:hover { color: var(--accent2); }
     button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
-    input, textarea, select { font-family: inherit; font-size: 13px; background: var(--bg2); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; outline: none; }
-    input:focus, textarea:focus, select:focus { border-color: var(--accent); }
-    textarea { resize: vertical; min-height: 60px; }
+    input, textarea, select { font-family: inherit; font-size: 14px; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); padding: 10px 14px; outline: none; transition: all 0.2s; }
+    input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1); }
+    textarea { resize: vertical; min-height: 80px; border-radius: 12px; }
 
     /* ===== LAYOUT ===== */
     .app { display: none; height: 100vh; }
     .app.active { display: flex; }
-    .sidebar { width: 220px; background: var(--bg2); border-right: 1px solid var(--border); overflow-y: auto; flex-shrink: 0; display: flex; flex-direction: column; }
-    .sidebar-header { padding: 20px 16px; border-bottom: 1px solid var(--border); font-size: 15px; font-weight: bold; color: var(--accent); letter-spacing: 0.05em; }
-    .sidebar-nav { flex: 1; padding: 12px 0; }
-    .sidebar-nav a { display: block; padding: 8px 20px; color: var(--text2); font-size: 12px; letter-spacing: 0.03em; border-left: 2px solid transparent; transition: all 0.15s; }
-    .sidebar-nav a:hover, .sidebar-nav a.active { color: var(--accent); border-left-color: var(--accent); background: rgba(10,186,181,0.05); }
-    .sidebar-footer { padding: 12px 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text2); }
-    .sidebar-footer a { color: var(--text2); }
-    .main { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
-    .main-header { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--bg2); position: sticky; top: 0; z-index: 10; }
-    .main-header h2 { font-size: 14px; font-weight: normal; letter-spacing: 0.05em; }
-    .main-content { flex: 1; padding: 24px; max-width: 900px; }
-    .main-content h3 { font-size: 18px; margin-bottom: 8px; color: var(--accent); letter-spacing: 0.03em; }
-    .main-content .desc { color: var(--text2); margin-bottom: 24px; font-size: 12px; }
+    .sidebar { width: 240px; background: var(--bg2); border-right: 1px solid var(--border); overflow-y: auto; flex-shrink: 0; display: flex; flex-direction: column; box-shadow: var(--shadow-sm); }
+    .sidebar-header { padding: 22px 20px; border-bottom: 1px solid var(--border); font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
+    .sidebar-header span { color: var(--accent); }
+    .sidebar-nav { flex: 1; padding: 16px 0; }
+    .sidebar-nav a { display: flex; align-items: center; gap: 8px; padding: 10px 20px; margin: 2px 10px; color: var(--text2); font-size: 13px; font-weight: 600; border-radius: 10px; transition: all 0.2s; }
+    .sidebar-nav a:hover, .sidebar-nav a.active { color: var(--accent); background: var(--accent-soft); }
+    .sidebar-nav a::before { content: '◆'; font-size: 8px; opacity: 0.6; }
+    .sidebar-footer { padding: 16px 20px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text2); }
+    .sidebar-footer a { color: var(--text2); font-weight: 600; }
+    .sidebar-footer a:hover { color: var(--accent); }
+    .main { flex: 1; overflow-y: auto; display: flex; flex-direction: column; background: var(--bg); }
+    .main-header { padding: 18px 28px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--bg2); position: sticky; top: 0; z-index: 10; box-shadow: var(--shadow-sm); }
+    .main-header h2 { font-size: 18px; font-weight: 700; font-family: 'Quicksand', sans-serif; color: var(--text); }
+    .main-content { flex: 1; padding: 32px; max-width: 960px; }
+    .main-content h3 { font-size: 22px; margin-bottom: 8px; color: var(--text); font-family: 'Quicksand', sans-serif; font-weight: 700; }
+    .main-content .desc { color: var(--text2); margin-bottom: 28px; font-size: 13px; }
 
     /* ===== BUTTONS ===== */
-    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; font-size: 12px; letter-spacing: 0.03em; border: 1px solid var(--border); transition: all 0.15s; }
-    .btn:hover { border-color: var(--accent); color: var(--accent); }
-    .btn-primary { background: var(--accent); color: #000; border-color: var(--accent); font-weight: bold; }
-    .btn-primary:hover { background: var(--accent2); color: #000; }
-    .btn-danger { border-color: var(--red); color: var(--red); }
-    .btn-danger:hover { background: var(--red); color: #fff; }
-    .btn-sm { padding: 4px 10px; font-size: 11px; }
-    .btn-icon { padding: 4px 8px; font-size: 14px; line-height: 1; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 18px; font-size: 13px; font-weight: 700; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--text); transition: all 0.2s; box-shadow: var(--shadow-sm); }
+    .btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), #38bdf8); color: #fff; border-color: transparent; box-shadow: 0 6px 16px rgba(14, 165, 233, 0.25); }
+    .btn-primary:hover { background: linear-gradient(135deg, var(--accent2), #0ea5e9); color: #fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3); }
+    .btn-danger { border-color: rgba(239, 68, 68, 0.3); color: var(--red); background: rgba(239, 68, 68, 0.05); }
+    .btn-danger:hover { background: var(--red); color: #fff; border-color: var(--red); }
+    .btn-sm { padding: 6px 12px; font-size: 12px; border-radius: 8px; }
+    .btn-icon { padding: 6px 10px; font-size: 14px; line-height: 1; }
 
     /* ===== LOGIN SCREEN ===== */
-    .login-screen { display: flex; align-items: center; justify-content: center; height: 100vh; }
+    .login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
     .login-screen.hidden { display: none; }
-    .login-box { background: var(--bg2); border: 1px solid var(--border); padding: 40px; width: 380px; text-align: center; }
-    .login-box h1 { font-size: 20px; margin-bottom: 8px; color: var(--accent); }
-    .login-box p { font-size: 12px; color: var(--text2); margin-bottom: 24px; }
-    .login-box input { width: 100%; text-align: center; font-size: 16px; padding: 12px; margin-bottom: 16px; }
-    .login-box .error { color: var(--red); font-size: 11px; margin-top: 8px; }
+    .login-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 24px; padding: 48px; width: 400px; max-width: 100%; text-align: center; box-shadow: var(--shadow-lg); position: relative; overflow: hidden; }
+    .login-box::before { content: '🐂'; position: absolute; top: -20px; right: -20px; font-size: 6rem; opacity: 0.08; transform: rotate(-15deg); }
+    .login-box h1 { font-size: 26px; margin-bottom: 8px; color: var(--text); font-family: 'Quicksand', sans-serif; font-weight: 700; }
+    .login-box h1 span { color: var(--accent); }
+    .login-box p { font-size: 14px; color: var(--text2); margin-bottom: 28px; }
+    .login-box input { width: 100%; text-align: center; font-size: 16px; padding: 14px; margin-bottom: 16px; }
+    .login-box .error { color: var(--red); font-size: 12px; margin-top: 8px; font-weight: 600; }
 
     /* ===== FORM GROUPS ===== */
-    .form-group { margin-bottom: 20px; }
-    .form-group label { display: block; font-size: 11px; color: var(--text2); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .form-group { margin-bottom: 24px; }
+    .form-group label { display: block; font-size: 12px; color: var(--text2); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
     .form-group input, .form-group textarea, .form-group select { width: 100%; }
-    .form-group .hint { font-size: 10px; color: var(--text2); margin-top: 4px; }
+    .form-group .hint { font-size: 11px; color: var(--text2); margin-top: 6px; }
 
     /* ===== ARRAY ITEMS ===== */
-    .array-item { background: var(--bg2); border: 1px solid var(--border); padding: 16px; margin-bottom: 12px; position: relative; }
-    .array-item .item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .array-item .item-header span { font-size: 11px; color: var(--text2); letter-spacing: 0.05em; }
-    .array-item .item-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .array-item { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; position: relative; box-shadow: var(--shadow-sm); transition: all 0.2s; }
+    .array-item:hover { box-shadow: var(--shadow-md); border-color: var(--border2); }
+    .array-item .item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .array-item .item-header span { font-size: 12px; color: var(--text2); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+    .array-item .item-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .array-item .item-full { grid-column: 1 / -1; }
-    .array-actions { margin-top: 12px; }
+    .array-actions { margin-top: 16px; }
 
     /* ===== STATUS BAR ===== */
-    .status-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg2); border-top: 1px solid var(--border); padding: 8px 24px; font-size: 11px; color: var(--text2); display: flex; justify-content: space-between; align-items: center; }
-    .status-bar .saved { color: var(--green); }
-    .status-bar .unsaved { color: var(--accent); }
+    .status-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg2); border-top: 1px solid var(--border); padding: 10px 28px; font-size: 12px; color: var(--text2); display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 16px rgba(30, 41, 59, 0.06); }
+    .status-bar .saved { color: var(--green); font-weight: 700; }
+    .status-bar .unsaved { color: var(--accent); font-weight: 700; }
     .status-bar .publishing { color: var(--accent); animation: blink 1s infinite; }
     @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
     /* ===== TOAST ===== */
-    .toast { position: fixed; top: 20px; right: 20px; background: var(--accent); color: #000; padding: 12px 24px; font-size: 12px; z-index: 999; opacity: 0; transform: translateY(-10px); transition: all 0.3s; pointer-events: none; }
+    .toast { position: fixed; top: 24px; right: 24px; background: linear-gradient(135deg, var(--accent), #38bdf8); color: #fff; padding: 14px 28px; font-size: 13px; font-weight: 700; border-radius: 12px; z-index: 999; opacity: 0; transform: translateY(-10px); transition: all 0.3s; pointer-events: none; box-shadow: var(--shadow-lg); }
     .toast.show { opacity: 1; transform: translateY(0); }
-    .toast.error { background: var(--red); color: #fff; }
+    .toast.error { background: linear-gradient(135deg, var(--red), #f87171); }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .sidebar { display: none; }
-      .main-content { padding: 16px; }
+      .main-content { padding: 20px; }
       .array-item .item-grid { grid-template-columns: 1fr; }
+      .login-box { padding: 36px 24px; }
     }
 
     /* ===== PREVIEW MODAL ===== */
-    .preview-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 100; display: none; }
+    .preview-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); z-index: 100; display: none; }
     .preview-overlay.show { display: flex; align-items: center; justify-content: center; }
-    .preview-box { background: var(--bg); border: 1px solid var(--border); padding: 24px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; }
-    .preview-box h4 { color: var(--accent); margin-bottom: 16px; }
-    .preview-box pre { white-space: pre-wrap; font-size: 11px; color: var(--text2); }
+    .preview-box { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; max-width: 640px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: var(--shadow-lg); }
+    .preview-box h4 { color: var(--accent); margin-bottom: 16px; font-family: 'Quicksand', sans-serif; }
+    .preview-box pre { white-space: pre-wrap; font-size: 12px; color: var(--text2); background: var(--bg); padding: 16px; border-radius: 12px; font-family: 'Fira Code', 'SF Mono', monospace; }
   </style>
 </head>
 <body>
@@ -109,30 +128,30 @@
   <!-- LOGIN SCREEN -->
   <div class="login-screen" id="loginScreen">
     <div class="login-box">
-      <h1>crazyox.ai</h1>
-      <p>内容管理后台</p>
+      <h1>crazy<span style="color:var(--accent);">ox</span>.ai</h1>
+      <p>🐂 内容管理后台</p>
       <input type="password" id="loginPassword" placeholder="请输入管理密码" autofocus />
-      <button class="btn btn-primary" onclick="doLogin()" style="width:100%;">进入后台</button>
+      <button class="btn btn-primary" onclick="doLogin()" style="width:100%;">进入后台 ✨</button>
       <div class="error" id="loginError"></div>
-      <p id="setupHint" style="margin-top:16px;font-size:10px;color:var(--text2);display:none;">首次使用？输入你想设置的密码即可。</p>
+      <p id="setupHint" style="margin-top:16px;font-size:12px;color:var(--text2);display:none;">首次使用？输入你想设置的密码即可 🌟</p>
     </div>
   </div>
 
   <!-- MAIN APP -->
   <div class="app" id="app">
     <div class="sidebar">
-      <div class="sidebar-header">◆ 内容管理</div>
+      <div class="sidebar-header">🐂 内容管理</div>
       <nav class="sidebar-nav" id="sidebarNav"></nav>
       <div class="sidebar-footer">
-        <a href="/" target="_blank">查看网站 →</a>
+        <a href="/" target="_blank">🌐 查看网站 →</a>
       </div>
     </div>
     <div class="main">
       <div class="main-header">
         <h2 id="sectionTitle">Hero 首屏</h2>
-        <div style="display:flex;gap:8px;">
-          <button class="btn btn-sm" onclick="previewJSON()">预览 JSON</button>
-          <button class="btn btn-primary btn-sm" id="publishBtn" onclick="publishContent()">◆ 发布到网站</button>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-sm" onclick="previewJSON()">📝 预览 JSON</button>
+          <button class="btn btn-primary btn-sm" id="publishBtn" onclick="publishContent()">🚀 发布到网站</button>
         </div>
       </div>
       <div class="main-content" id="mainContent"></div>
@@ -634,14 +653,14 @@
         </div>
         <div class="item-grid">
           <div class="form-group"><label>标题</label><input type="text" value="${esc(vi.title||'')}" onchange="content.videos.items[${i}].title=this.value;markChanged();" /></div>
-          <div class="form-group"><label>时长</label><input type="text" value="${esc(vi.duration||'')}" onchange="content.videos.items[${i}].duration=this.value;markChanged();" /></div>
+          <div class="form-group"><label>元信息 (如：YouTube · 12:34 · 免费)</label><input type="text" value="${esc(vi.meta||'')}" onchange="content.videos.items[${i}].meta=this.value;markChanged();" /></div>
           <div class="form-group item-full"><label>链接</label><input type="text" value="${esc(vi.link||'')}" onchange="content.videos.items[${i}].link=this.value;markChanged();" /></div>
         </div>
       </div>`;
     }
 
     function addVidItem() {
-      content.videos.items.push({ title: '新视频', duration: '00:00', link: 'https://youtube.com/@crazyox' });
+      content.videos.items.push({ title: '新视频', meta: 'YouTube · 00:00 · 免费', link: 'https://youtube.com/@crazyox' });
       markChanged();
       renderSection('videos');
     }
@@ -678,14 +697,15 @@
           <button class="btn btn-sm btn-danger" onclick="content.nav.links.splice(${i},1);markChanged();renderSection('nav');">删除</button>
         </div>
         <div class="item-grid">
+          <div class="form-group"><label>图标 (emoji)</label><input type="text" value="${esc(l.icon||'')}" placeholder="🧰" onchange="content.nav.links[${i}].icon=this.value;markChanged();" /></div>
           <div class="form-group"><label>显示文字</label><input type="text" value="${esc(l.label||'')}" onchange="content.nav.links[${i}].label=this.value;markChanged();" /></div>
-          <div class="form-group"><label>锚点/链接</label><input type="text" value="${esc(l.href||'')}" onchange="content.nav.links[${i}].href=this.value;markChanged();" /></div>
+          <div class="form-group item-full"><label>锚点/链接</label><input type="text" value="${esc(l.href||'')}" onchange="content.nav.links[${i}].href=this.value;markChanged();" /></div>
         </div>
       </div>`;
     }
 
     function addNavLink() {
-      content.nav.links.push({ label: '新栏目', href: '#new' });
+      content.nav.links.push({ icon: '✨', label: '新栏目', href: '#new' });
       markChanged();
       renderSection('nav');
     }
