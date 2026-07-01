@@ -10,27 +10,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-deep:    #0a0a0a;
-      --bg-surface: #0f0f0f;
-      --bg-card:    #141414;
-      --bg-elevated:#1a1a1a;
-      --border:     #222222;
-      --border-subtle: #1a1a1a;
+      --bg-deep:    #FFFFFF;
+      --bg-surface: #F8FAF9;
+      --bg-card:    #FFFFFF;
+      --bg-elevated:#EEF3F1;
+      --border:     #D8E0DD;
+      --border-subtle: #E8EEEC;
 
-      --text-primary:   #e0e0e0;
-      --text-secondary: #888888;
-      --text-muted:     #555555;
+      --text-primary:   #1A1A2E;
+      --text-secondary: #5A6B6B;
+      --text-muted:     #94A3A3;
 
-      --accent:      #0080FF;
-      --accent-hover: #3399FF;
-      --accent-dim:   #004C99;
-      --accent-subtle: rgba(0, 128, 255, 0.08);
-      --accent-glow:  rgba(0, 128, 255, 0.3);
+      --accent:      #0ABAB5;
+      --accent-hover: #2DD4C8;
+      --accent-dim:   #0D9488;
+      --accent-subtle: rgba(10, 186, 181, 0.06);
+      --accent-glow:  rgba(10, 186, 181, 0.15);
 
-      --success: #0080FF;
-      --warning: #ffcc00;
-      --danger:  #ff3333;
-      --info:    #0080FF;
+      --success: #0ABAB5;
+      --warning: #F59E0B;
+      --danger:  #EF4444;
+      --info:    #0ABAB5;
 
       --font-pixel:   'Press Start 2P', monospace;
       --font-display: 'VT323', monospace;
@@ -90,8 +90,8 @@
         0deg,
         transparent,
         transparent 2px,
-        rgba(0,0,0,0.15) 2px,
-        rgba(0,0,0,0.15) 4px
+        rgba(0,0,0,0.04) 2px,
+        rgba(0,0,0,0.04) 4px
       );
       opacity: 0.4;
     }
@@ -103,8 +103,8 @@
       pointer-events: none;
       z-index: 0;
       background-image:
-        linear-gradient(rgba(255,0,229,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,0,229,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(10,186,181,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(10,186,181,0.03) 1px, transparent 1px);
       background-size: 40px 40px;
       animation: gridScroll 20s linear infinite;
     }
@@ -191,7 +191,7 @@
 
     @keyframes borderFlicker {
       0%, 100% { border-color: var(--accent); box-shadow: 0 0 5px var(--accent-glow); }
-      50% { border-color: var(--accent-dim); box-shadow: 0 0 2px rgba(255,0,229,0.1); }
+      50% { border-color: var(--accent-dim); box-shadow: 0 0 2px rgba(10,186,181,0.1); }
       75% { border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
     }
 
@@ -205,16 +205,16 @@
       text-transform: uppercase;
       text-shadow: 
         0 0 10px var(--accent-glow),
-        0 0 40px rgba(0,240,255,0.2),
+        0 0 40px rgba(10,186,181,0.08),
         4px 4px 0px var(--accent-dim);
       animation: textGlitch 5s ease-in-out infinite;
     }
 
     @keyframes textGlitch {
-      0%, 100% { text-shadow: 0 0 10px var(--accent-glow), 0 0 40px rgba(0,240,255,0.2), 4px 4px 0px var(--accent-dim); }
-      25% { text-shadow: 0 0 15px var(--accent-glow), 0 0 60px rgba(0,240,255,0.3), -2px 4px 0px var(--accent-dim); }
-      50% { text-shadow: 0 0 5px var(--accent-glow), 0 0 30px rgba(255,0,229,0.1), 4px -2px 0px var(--accent-dim); }
-      75% { text-shadow: 0 0 20px var(--accent-glow), 0 0 80px rgba(0,240,255,0.4), -4px -4px 0px var(--accent-dim); }
+      0%, 100% { text-shadow: 0 0 10px var(--accent-glow), 0 0 40px rgba(10,186,181,0.08), 4px 4px 0px var(--accent-dim); }
+      25% { text-shadow: 0 0 15px var(--accent-glow), 0 0 60px rgba(10,186,181,0.1), -2px 4px 0px var(--accent-dim); }
+      50% { text-shadow: 0 0 5px var(--accent-glow), 0 0 30px rgba(10,186,181,0.1), 4px -2px 0px var(--accent-dim); }
+      75% { text-shadow: 0 0 20px var(--accent-glow), 0 0 80px rgba(10,186,181,0.12), -4px -4px 0px var(--accent-dim); }
     }
 
     .hero-title em {
@@ -352,7 +352,7 @@
       text-transform: uppercase;
       white-space: nowrap;
       color: var(--text-muted);
-      text-shadow: 0 0 5px rgba(255,0,229,0.1);
+      text-shadow: 0 0 5px rgba(10,186,181,0.1);
     }
 
     .ticker span::after {
@@ -727,8 +727,8 @@
         0deg,
         transparent,
         transparent 2px,
-        rgba(255,0,229,0.05) 2px,
-        rgba(255,0,229,0.05) 4px
+        rgba(10,186,181,0.05) 2px,
+        rgba(10,186,181,0.05) 4px
       );
     }
 
@@ -934,7 +934,7 @@
       z-index: 100;
       padding: 1em 0;
       backdrop-filter: blur(12px);
-      background: rgba(10, 10, 10, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       border-bottom: 2px solid transparent;
       transition: border-color 0.3s;
     }
