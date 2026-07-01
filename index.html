@@ -554,6 +554,60 @@
       letter-spacing: 0.05em;
     }
 
+    .content-articles {
+      margin-top: var(--space-md);
+      border-top: 1px solid var(--border-subtle);
+      padding-top: var(--space-md);
+    }
+
+    .content-article-item {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-sm);
+      padding: 0.35em 0;
+      font-size: 0.85rem;
+      border-bottom: 1px dashed var(--border-subtle);
+    }
+
+    .content-article-item:last-child { border-bottom: none; }
+
+    .content-article-date {
+      font-family: var(--font-pixel);
+      font-size: 0.55rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      letter-spacing: 0.03em;
+      min-width: 72px;
+    }
+
+    .content-article-title {
+      color: var(--text-secondary);
+      transition: color 0.15s, text-shadow 0.15s;
+      text-decoration: none;
+      line-height: 1.5;
+    }
+
+    .content-article-title:hover {
+      color: var(--accent);
+      text-shadow: 0 0 8px var(--accent-glow);
+    }
+
+    .content-article-more {
+      display: block;
+      margin-top: 0.5em;
+      font-family: var(--font-pixel);
+      font-size: 0.55rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .content-article-empty {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+      padding: 0.5em 0;
+    }
+
     /* ===== GITHUB TOOLS ===== */
     .gh-grid {
       display: grid;
@@ -1178,9 +1232,29 @@
           <div class="content-card-num">${esc(a.number)}</div>
           <h3 class="content-card-title">${esc(a.title)}</h3>
           <p class="content-card-desc">${esc(a.description)}</p>
+          <div class="content-articles">
+            ${renderArticleList(a.articles || [])}
+          </div>
           <div class="content-card-count">${esc(a.count)}</div>
         </div>
       `).join('')}</div>`;
+    }
+
+    function renderArticleList(articles) {
+      if (!articles.length) {
+        return '<div class="content-article-empty">暂无文章，可在后台添加 →</div>';
+      }
+      const MAX = 3;
+      const visible = articles.slice(0, MAX);
+      const more = articles.length > MAX ? articles.length - MAX : 0;
+      const list = visible.map(art => `
+        <a href="${esc(art.url)}" class="content-article-item" target="_blank" rel="noopener">
+          <span class="content-article-date">${esc(art.date || '')}</span>
+          <span class="content-article-title">${esc(art.title)}</span>
+        </a>
+      `).join('');
+      const moreHtml = more ? `<span class="content-article-more">+ ${more} 篇更多文章</span>` : '';
+      return list + moreHtml;
     }
 
     function renderGithub(data) {

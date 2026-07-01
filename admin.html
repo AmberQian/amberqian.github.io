@@ -476,7 +476,7 @@
 
     function renderArticlesForm(mc) {
       const a = content.articles;
-      mc.innerHTML = `<h3>长文分类合集</h3><p class="desc">Content Collections 区域</p>
+      mc.innerHTML = `<h3>长文分类合集</h3><p class="desc">Content Collections 区域 — 每个合集下可以添加具体文章链接</p>
         ${textField('区块标签', 'articles.label')}
         ${textField('标题前半', 'articles.title')}
         ${textField('标题高亮 (后半)', 'articles.titleHighlight')}
@@ -489,6 +489,7 @@
     }
 
     function renderArticleItem(ai, i) {
+      const arts = ai.articles || [];
       return `<div class="array-item">
         <div class="item-header"><span>合集 #${i+1}</span>
           <button class="btn btn-sm btn-danger" onclick="content.articles.items.splice(${i},1);markChanged();renderSection('articles');">删除</button>
@@ -499,11 +500,42 @@
           <div class="form-group item-full"><label>描述</label><textarea rows="2" onchange="content.articles.items[${i}].description=this.value;markChanged();">${esc(ai.description||'')}</textarea></div>
           <div class="form-group"><label>统计文字</label><input type="text" value="${esc(ai.count||'')}" onchange="content.articles.items[${i}].count=this.value;markChanged();" /></div>
         </div>
+        <div class="form-group" style="margin-top:16px;">
+          <label style="text-transform:none;letter-spacing:0;">文章列表</label>
+          <div id="articleList_${i}">${arts.map((art,j) => renderCollectionArticle(i, j, art)).join('')}</div>
+          <button class="btn btn-sm" style="margin-top:8px;" onclick="addCollectionArticle(${i})">+ 添加文章</button>
+        </div>
       </div>`;
     }
 
+    function renderCollectionArticle(collectionIdx, articleIdx, art) {
+      return `<div class="array-item" style="background:var(--bg3);margin:8px 0;padding:12px;">
+        <div class="item-header"><span style="color:var(--accent);">文章 #${articleIdx+1}</span>
+          <button class="btn btn-sm btn-danger" onclick="removeCollectionArticle(${collectionIdx},${articleIdx})">删除</button>
+        </div>
+        <div class="item-grid">
+          <div class="form-group item-full"><label>文章标题</label><input type="text" value="${esc(art.title||'')}" onchange="content.articles.items[${collectionIdx}].articles[${articleIdx}].title=this.value;markChanged();" /></div>
+          <div class="form-group item-full"><label>文章链接</label><input type="text" value="${esc(art.url||'')}" placeholder="https://..." onchange="content.articles.items[${collectionIdx}].articles[${articleIdx}].url=this.value;markChanged();" /></div>
+          <div class="form-group"><label>发布日期</label><input type="text" value="${esc(art.date||'')}" placeholder="2026-07-01" onchange="content.articles.items[${collectionIdx}].articles[${articleIdx}].date=this.value;markChanged();" /></div>
+        </div>
+      </div>`;
+    }
+
+    function addCollectionArticle(i) {
+      if (!content.articles.items[i].articles) content.articles.items[i].articles = [];
+      content.articles.items[i].articles.push({ title: '新文章', url: 'https://', date: '' });
+      markChanged();
+      renderSection('articles');
+    }
+
+    function removeCollectionArticle(i, j) {
+      content.articles.items[i].articles.splice(j, 1);
+      markChanged();
+      renderSection('articles');
+    }
+
     function addArticleItem() {
-      content.articles.items.push({ number: '07', title: '新合集', description: '描述', count: '0+ 篇长文' });
+      content.articles.items.push({ number: '0' + (content.articles.items.length + 1), title: '新合集', description: '描述', count: '0+ 篇长文', articles: [] });
       markChanged();
       renderSection('articles');
     }
