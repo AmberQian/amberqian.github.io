@@ -242,6 +242,7 @@
       document.getElementById('statusBar').style.display = 'flex';
       buildSidebar();
       await loadContentData();
+      updateSidebarHeader();
       switchSection('hero');
       updateStatus();
     }
@@ -273,6 +274,11 @@
         `<a href="#" data-section="${s.id}" onclick="switchSection('${s.id}');return false;">${s.label}</a>`
       ).join('');
       updateSidebarActive();
+    }
+
+    function updateSidebarHeader() {
+      const avatar = (content && content.site && content.site.avatar) || 'avatar.jpg';
+      document.querySelector('.sidebar-header').innerHTML = `<img src="${esc(avatar)}" alt="logo" style="width:26px;height:26px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:8px;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.08);"> 内容管理`;
     }
 
     function updateSidebarActive() {
@@ -713,7 +719,8 @@
     function renderSiteForm(mc) {
       mc.innerHTML = `<h3>站点设置</h3><p class="desc">SEO 和站点基础信息</p>
         ${textField('页面标题 (title)', 'site.title')}
-        ${textareaField('页面描述 (meta description)', 'site.description', 3)}`;
+        ${textareaField('页面描述 (meta description)', 'site.description', 3)}
+        ${textField('头像路径', 'site.avatar', '例如 avatar.jpg，会显示在导航、Hero 卡片和 CyberFlow 吉祥物位置')}`;
     }
 
     /* ===== PUBLISH ===== */

@@ -176,6 +176,85 @@
       .nav-links a .icon { font-size: 1.25rem; }
     }
 
+    /* ===== AVATAR LOGO ===== */
+    .avatar-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      display: block;
+      border-radius: 50%;
+    }
+    .nav-logo .ox {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      padding: 0;
+      overflow: hidden;
+      border: 3px solid transparent;
+      background: linear-gradient(white, white) padding-box,
+                  linear-gradient(135deg, #ef4444, var(--accent-2)) border-box;
+      box-shadow: 0 4px 14px rgba(244, 114, 182, 0.25);
+      transform: rotate(-6deg);
+      transition: transform 0.3s;
+      display: grid; place-items: center;
+    }
+    .nav-logo .ox img { transform: scale(1.08); }
+    .nav-logo:hover .ox { transform: rotate(6deg) scale(1.1); }
+
+    .hero-card-avatar {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 14px rgba(14, 165, 233, 0.2);
+      background: #fff;
+    }
+    .hero-card-avatar img { transform: scale(1.1); }
+
+    .cf-mascot {
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 8px solid transparent;
+      background: linear-gradient(white, white) padding-box,
+                  linear-gradient(135deg, #ef4444, var(--accent-2), var(--accent)) border-box;
+      box-shadow: var(--shadow-xl);
+      animation: mascotBounce 3s ease-in-out infinite;
+      position: relative;
+      display: grid; place-items: center;
+    }
+    .cf-mascot::before {
+      content: '';
+      position: absolute; inset: -18px;
+      border-radius: 50%;
+      border: 3px dashed var(--sky-200);
+      animation: orbit 18s linear infinite;
+    }
+    .cf-mascot::after {
+      content: '';
+      position: absolute; inset: -28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(244, 114, 182, 0.18), rgba(14, 165, 233, 0.18));
+      filter: blur(24px);
+      z-index: -1;
+    }
+    .cf-mascot img { position: relative; z-index: 1; transform: scale(1.08); }
+    .cf-deco {
+      position: absolute;
+      font-size: 1.6rem;
+      z-index: 2;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+      animation: float 2.5s ease-in-out infinite;
+    }
+    .cf-deco:nth-of-type(1) { top: 10%; right: 0; animation-delay: 0s; }
+    .cf-deco:nth-of-type(2) { bottom: 15%; left: -5%; animation-delay: -1.2s; }
+    .cf-deco:nth-of-type(3) { top: 45%; right: -8%; animation-delay: -2.4s; }
+    @media (max-width: 900px) {
+      .cf-mascot { width: 220px; height: 220px; }
+      .cf-mascot::before { inset: -14px; }
+      .cf-mascot::after { inset: -22px; }
+      .cf-deco { font-size: 1.3rem; }
+    }
+
     /* ===== HERO ===== */
     .hero {
       position: relative;
@@ -811,7 +890,7 @@
   <nav class="nav" id="nav">
     <div class="container nav-inner">
       <a href="#" class="nav-logo">
-        <span class="ox">🐂</span>
+        <span class="ox"><img class="avatar-img" src="avatar.jpg" alt="crazyox.ai"></span>
         <span>crazy<span style="color:var(--accent);">ox</span>.ai</span>
       </a>
       <ul class="nav-links" id="navLinks">
@@ -844,7 +923,7 @@
       <div class="hero-visual">
         <div class="hero-card">
           <div class="hero-card-header">
-            <div class="hero-card-avatar">🐂</div>
+            <div class="hero-card-avatar"><img class="avatar-img" src="avatar.jpg" alt="CrazyOx"></div>
             <div>
               <div class="hero-card-title">CrazyOx.ai</div>
               <div class="hero-card-sub">AI · 投研 · 自动化</div>
@@ -917,7 +996,12 @@
             <div class="cf-orbit-dot">✍️</div>
             <div class="cf-orbit-dot">🧠</div>
           </div>
-          <div class="cf-mascot">🐂</div>
+          <div class="cf-mascot">
+            <img class="avatar-img" src="avatar.jpg" alt="CyberFlow mascot">
+            <span class="cf-deco">💖</span>
+            <span class="cf-deco">✨</span>
+            <span class="cf-deco">🌟</span>
+          </div>
         </div>
         <div>
           <div class="section-label reveal">🚀 Main Project</div>
@@ -1170,7 +1254,12 @@
     }
 
     /* ===== RENDER ALL ===== */
+    function renderAvatar() {
+      const avatar = (content.site && content.site.avatar) || 'avatar.jpg';
+      document.querySelectorAll('.avatar-img').forEach(img => img.src = esc(avatar));
+    }
     function renderAll() {
+      renderAvatar();
       renderNav();
       renderHero();
       renderTicker();

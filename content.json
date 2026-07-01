@@ -1,7 +1,8 @@
 {
   "site": {
     "title": "CrazyOx.ai — AI驱动的投资视角与自动化叙事",
-    "description": "AI板块价值迁徙、半导体杠杆监控、CyberFlow AI自动化IP运营——深度投研视角与AI工具集成"
+    "description": "AI板块价值迁徙、半导体杠杆监控、CyberFlow AI自动化IP运营——深度投研视角与AI工具集成",
+    "avatar": "avatar.jpg"
   },
   "hero": {
     "tag": "✨ AI · 投研 · 自动化叙事",
