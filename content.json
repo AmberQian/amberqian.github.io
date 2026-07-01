@@ -10,8 +10,18 @@
     "titleHighlight": "信号",
     "subtitle": "AI板块价值迁徙、半导体杠杆实时监控、CyberFlow自动化IP运营——用工具放大视角，用叙事传递认知。",
     "buttons": [
-      { "text": "探索工具 →", "href": "#tools", "class": "btn-primary", "external": false },
-      { "text": "GitHub →", "href": "https://github.com/AmberQian", "class": "btn-ghost", "external": true }
+      {
+        "text": "探索工具 →",
+        "href": "#tools",
+        "class": "btn-primary",
+        "external": false
+      },
+      {
+        "text": "GitHub →",
+        "href": "https://github.com/AmberQian",
+        "class": "btn-ghost",
+        "external": true
+      }
     ]
   },
   "ticker": {
@@ -88,12 +98,42 @@
     "titleHighlight": "分类合集",
     "description": "持续输出的深度内容，按主题分类整理。在输出中被动成长，在认知迭代中接近独立判断。",
     "items": [
-      { "number": "01", "title": "AI与科技叙事", "description": "从大模型竞争格局到AI资本开支周期，拆解科技叙事背后的真实驱动力。", "count": "12+ 篇长文" },
-      { "number": "02", "title": "半导体与硬件", "description": "算力链、设备材料、先进制程——从产业细节到估值逻辑的完整链条。", "count": "8+ 篇长文" },
-      { "number": "03", "title": "宏观与流动性", "description": "美联储路径、美元周期、流动性边际变化对风险资产的传导机制。", "count": "10+ 篇长文" },
-      { "number": "04", "title": "投研框架与方法论", "description": "DCF实务、财报挖掘技巧、头寸管理、认知偏差识别——可复用的投研工具箱。", "count": "15+ 篇长文" },
-      { "number": "05", "title": "AI自动化与工具", "description": "CyberFlow工作流、X账号运营、AI辅助内容生产——把能力蒸馏成可复制的Skills。", "count": "6+ 篇长文" },
-      { "number": "06", "title": "供应链与商品", "description": "从紫苏叶到稀有金属，用供应链咽喉分析框架识别商品投资机会。", "count": "5+ 篇长文" }
+      {
+        "number": "01",
+        "title": "AI与科技叙事",
+        "description": "从大模型竞争格局到AI资本开支周期，拆解科技叙事背后的真实驱动力。",
+        "count": "12+ 篇长文"
+      },
+      {
+        "number": "02",
+        "title": "半导体与硬件",
+        "description": "算力链、设备材料、先进制程——从产业细节到估值逻辑的完整链条。",
+        "count": "8+ 篇长文"
+      },
+      {
+        "number": "03",
+        "title": "宏观与流动性",
+        "description": "美联储路径、美元周期、流动性边际变化对风险资产的传导机制。",
+        "count": "10+ 篇长文"
+      },
+      {
+        "number": "04",
+        "title": "投研框架与方法论",
+        "description": "DCF实务、财报挖掘技巧、头寸管理、认知偏差识别——可复用的投研工具箱。",
+        "count": "15+ 篇长文"
+      },
+      {
+        "number": "05",
+        "title": "AI自动化与工具",
+        "description": "CyberFlow工作流、X账号运营、AI辅助内容生产——把能力蒸馏成可复制的Skills。",
+        "count": "6+ 篇长文"
+      },
+      {
+        "number": "06",
+        "title": "供应链与商品",
+        "description": "从紫苏叶到稀有金属，用供应链咽喉分析框架识别商品投资机会。",
+        "count": "5+ 篇长文"
+      }
     ]
   },
   "github": {
@@ -175,10 +215,26 @@
     "moreText": "……以及另外 11 个视频，完整覆盖 AI 自动化运营 X 账号的全流程 →",
     "moreLink": "https://youtube.com/@crazyox",
     "items": [
-      { "title": "指纹浏览器原理与选型指南", "duration": "12:34", "link": "https://youtube.com/@crazyox" },
-      { "title": "静态IP配置与IP纯净度检测", "duration": "15:20", "link": "https://youtube.com/@crazyox" },
-      { "title": "影子封禁：识别与规避策略", "duration": "10:08", "link": "https://youtube.com/@crazyox" },
-      { "title": "CyberFlow 工作流完整设置教程", "duration": "18:55", "link": "https://youtube.com/@crazyox" }
+      {
+        "title": "指纹浏览器原理与选型指南",
+        "duration": "12:34",
+        "link": "https://youtube.com/@crazyox"
+      },
+      {
+        "title": "静态IP配置与IP纯净度检测",
+        "duration": "15:20",
+        "link": "https://youtube.com/@crazyox"
+      },
+      {
+        "title": "影子封禁：识别与规避策略",
+        "duration": "10:08",
+        "link": "https://youtube.com/@crazyox"
+      },
+      {
+        "title": "CyberFlow 工作流完整设置教程",
+        "duration": "18:55",
+        "link": "https://youtube.com/@crazyox"
+      }
     ]
   },
   "contact": {
@@ -188,19 +244,37 @@
     "email": "crazyox@agent.qq.com"
   },
   "footer": {
-    "text": "© 2026 crazyox.ai · 接受所有失去与获取",
+    "text": "© 2026 crazyox.ai ",
     "githubLink": "https://github.com/AmberQian"
   },
   "nav": {
     "logoText": "crazyox.ai",
     "logoHighlight": "ox",
     "links": [
-      { "label": "工具", "href": "#tools" },
-      { "label": "内容", "href": "#content" },
-      { "label": "GitHub", "href": "#github" },
-      { "label": "CyberFlow", "href": "#cyberflow" },
-      { "label": "视频", "href": "#videos" },
-      { "label": "联系", "href": "#contact" }
+      {
+        "label": "工具",
+        "href": "#tools"
+      },
+      {
+        "label": "内容",
+        "href": "#content"
+      },
+      {
+        "label": "GitHub",
+        "href": "#github"
+      },
+      {
+        "label": "CyberFlow",
+        "href": "#cyberflow"
+      },
+      {
+        "label": "视频",
+        "href": "#videos"
+      },
+      {
+        "label": "联系",
+        "href": "#contact"
+      }
     ]
   }
 }
