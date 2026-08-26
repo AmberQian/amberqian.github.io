@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BTC Pi Cycle Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">BTC Long Cycle Monitor</p>
+          <h1>BTC Pi 指标周期看板</h1>
+        </div>
+        <div class="status-pill" id="dataStatus">加载中</div>
+      </header>
+
+      <section class="summary" aria-label="核心状态">
+        <article class="hero">
+          <span class="label">综合状态</span>
+          <strong id="riskLabel">--</strong>
+          <p id="riskCopy">正在读取 BTC 日线和衍生品数据。</p>
+        </article>
+        <article class="kpi">
+          <span class="label">BTC 价格</span>
+          <strong id="price">--</strong>
+          <small id="priceDate">--</small>
+        </article>
+        <article class="kpi">
+          <span class="label">Pi Ratio</span>
+          <strong id="piRatio">--</strong>
+          <small id="piGap">--</small>
+        </article>
+        <article class="kpi">
+          <span class="label">Funding</span>
+          <strong id="funding">--</strong>
+          <small id="fundingNote">--</small>
+        </article>
+      </section>
+
+      <section class="grid two">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>Pi Cycle Top</h2>
+              <p>111DMA 与 2 x 350DMA 的距离。</p>
+            </div>
+            <button id="refreshBtn" type="button">刷新</button>
+          </div>
+          <canvas id="piChart" height="260"></canvas>
+          <div class="legend">
+            <span><i class="line fast"></i>111DMA</span>
+            <span><i class="line slow"></i>2 x 350DMA</span>
+            <span><i class="line price"></i>BTC</span>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>周期仪表</h2>
+              <p>长期估值和短期杠杆热度。</p>
+            </div>
+          </div>
+          <div class="gauge-list">
+            <div class="gauge-row">
+              <span>Pi 顶部风险</span>
+              <div class="bar"><b id="piBar"></b></div>
+              <strong id="piState">--</strong>
+            </div>
+            <div class="gauge-row">
+              <span>价格相对 200DMA</span>
+              <div class="bar"><b id="dmaBar"></b></div>
+              <strong id="dmaState">--</strong>
+            </div>
+            <div class="gauge-row">
+              <span>价格相对 200WMA</span>
+              <div class="bar"><b id="wmaBar"></b></div>
+              <strong id="wmaState">--</strong>
+            </div>
+            <div class="gauge-row">
+              <span>衍生品热度</span>
+              <div class="bar"><b id="derivBar"></b></div>
+              <strong id="derivState">--</strong>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>链上复核清单</h2>
+            <p>这些指标需要 Glassnode、LookIntoBitcoin、CoinMetrics 等链上数据源复核。</p>
+          </div>
+        </div>
+        <div class="checklist">
+          <a href="https://www.lookintobitcoin.com/charts/mvrv-zscore/" target="_blank" rel="noreferrer">
+            <strong>MVRV Z-Score</strong><span>高分位代表估值过热，低分位代表周期低估。</span>
+          </a>
+          <a href="https://www.lookintobitcoin.com/charts/relative-unrealized-profit--loss/" target="_blank" rel="noreferrer">
+            <strong>NUPL</strong><span>观察全网未实现盈亏，从恐惧到亢奋。</span>
+          </a>
+          <a href="https://www.lookintobitcoin.com/charts/puell-multiple/" target="_blank" rel="noreferrer">
+            <strong>Puell Multiple</strong><span>衡量矿工收入相对 365 日均值的冷热。</span>
+          </a>
+          <a href="https://www.lookintobitcoin.com/charts/rhodl-ratio/" target="_blank" rel="noreferrer">
+            <strong>RHODL Ratio</strong><span>识别老币向新资金分发的周期阶段。</span>
+          </a>
+          <a href="https://studio.glassnode.com/metrics?a=BTC&m=indicators.SoprAdjusted" target="_blank" rel="noreferrer">
+            <strong>aSOPR</strong><span>看链上花费是否整体处于盈利卖出。</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>验证记录</h2>
+            <p>用固定阈值跟踪，之后复盘 30/90/180 天回撤。</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>指标</th>
+                <th>当前值</th>
+                <th>阈值</th>
+                <th>状态</th>
+                <th>用途</th>
+              </tr>
+            </thead>
+            <tbody id="metricTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer>
+        <span id="sourceLine">Source: Binance public API</span>
+        <span>不是投资建议，仅作周期风险观察。</span>
+      </footer>
+    </main>
+    <script src="data/snapshot.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
